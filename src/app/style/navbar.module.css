@@ -4,12 +4,13 @@
     justify-content: space-between;
 }
 .navbar{
-    width:100%;
+    width:100vw;
     height: 8vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: brown;
+    background-color: #161414;
+    /* background-color: brown; */
 }
 
 .leftSection{
@@ -47,6 +48,6 @@
 
 .rightNavbar{
     width: 15%;
-    margin-right: 15px;
-    background-color: blueviolet;
+    margin-right: 30px;
+    /* background-color: blueviolet; */
 }

@@ -1,0 +1,95 @@
+.header {
+    width: 78.5%;
+    height: 60vh;
+    margin: auto;
+    /* background-color: blanchedalmond; */
+    background-blend-mode: multiply;
+    position: relative;
+    color:#000;
+}
+
+.headerImage {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.headerOverlay {
+    width: 100%;
+    height: 10vh;
+    background: rgb(226, 226, 226);
+    background: -moz-linear-gradient(0deg, rgba(226, 226, 226, 1) 50%, rgba(0, 212, 255, 0) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(226, 226, 226, 1) 50%, rgba(0, 212, 255, 0) 100%);
+    background: linear-gradient(0deg, rgba(226, 226, 226, 1) 50%, rgba(0, 212, 255, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e2e2e2", endColorstr="#00d4ff", GradientType=1);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.container {
+    width: 96%;
+    /* height: 100vh; */
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, 12%);
+    /* background-color: rgb(226, 192, 43); */
+}
+
+
+/* Offer page */
+
+
+.offerContainer {
+    width: 100%;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: #cacaca; */
+}
+
+.card {
+    width: calc(100% / 4.2);
+    height: 450px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
+.minCard{
+    width: 90%;
+    height: 75%;
+    margin: 15px auto 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: bisque;
+}
+
+.minCard .cardItem{
+
+    width: 98%;
+    height: 96%;
+    background-color: #fff;
+    /* border: 1px solid red; */
+    margin: 0 auto 0 auto;
+}
+
+.minCard .cardItem:nth-child(odd){
+    margin-right: 2.5px;
+}
+.minCard .cardItem:nth-child(even) {
+    margin-left: 2.5px;
+}
+/* .minCard .cardItem:nth-child(2){
+    margin-left: 2.5px;
+} */
+
+.flexOffer {
+    width: 100%;
+    height: 250px;
+    background-color: #cacaca;
+}
