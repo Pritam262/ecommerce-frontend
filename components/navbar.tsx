@@ -4,7 +4,10 @@ import Image from 'next/image';
 import { FaSearch } from "react-icons/fa";
 import { GrLocation } from "react-icons/gr";
 import Link from 'next/link';
+import { useAppContext } from '@/app/context/appContext';
 export default function Navbar() {
+    const {isLogin} = useAppContext();
+    console.log("User is Login navbar",isLogin);
     return (
         <div className={Styles.navbar}>
             <div className={`${Styles.leftSection} ${Styles.flex}`}>
