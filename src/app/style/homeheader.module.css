@@ -109,11 +109,20 @@
     margin-left: 2.5px;
 } */
 
+
 .flexOffer {
-    width: 100%;
+    /* width: 100%;
     height: 280px;
     background-color: #cacaca;
-    padding:0  15px 15px 15px;
+    padding:0  15px 15px 15px; */
+    width: 100%;
+    /* height: 280px; */
+    height: 350px;
+    /* background-color: #cacaca; */
+    background-color: #fff;
+    padding: 0 15px 15px 15px;
+    overflow: hidden; /* To hide overflow images */
+    position: relative;
 }
 
 .flexOfferBox{
@@ -121,17 +130,52 @@
     height: calc(100% - 15px);
     display: flex;
     align-items: center;
-    background-color: blanchedalmond;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling */
 }
 .flexImage{
-    width: 200px;
+    flex: 0 0 calc(100% / 6); /* Set width for 6 images per slide */
     height: 100%;
-    background-color: azure;
-    border: 1px solid red;
+    background-color: #f3f3f3;
+    /* border: 1px solid red; */
+    box-sizing: border-box; /* Include borders in width calculations */
 }
-.flexImage:nth-child(odd){
-    margin-right: 2.5px;
+.flexImage img{
+    width: 100%;
+    height: 60%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-.flexImage:nth-child(even){
-    margin-left: 2.5px;
+
+  
+  .flexImage:not(:last-child) {
+    margin-right: 10px; /* Adjust spacing between images */
+  }
+.prevDiv{
+    width: 60px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 2%;
+    transform: translate(-15px, -50%);
+    z-index: 10;
 }
+
+.nextDiv{
+    width: 60px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    transform: translate(15px, -50%);
+    z-index: 10;
+}
+

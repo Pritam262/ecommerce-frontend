@@ -42,7 +42,8 @@ export default function Navbar() {
 
 
                 <div>
-                    <span>Hello, <span>sign in</span></span>
+                    <Link href='/login'>
+                    <span>Hello, <span>sign in</span></span></Link>
                     <p>Account & Lists</p>
                 </div>
 

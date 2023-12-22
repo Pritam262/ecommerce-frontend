@@ -1,0 +1,111 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.boxContainer{
+    width: 375px;
+    min-height: 450px;
+    height: max-content;
+    border: 1px solid #a9a9a9;
+    border-radius: 10px;
+    /* background-color: bisque; */
+    margin-top: 5%;
+    padding: 1.5rem;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+
+}
+.boxContainer h3{
+    font-size: 2em;
+
+}
+
+.boxContainer input{
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #adadad;
+    border-radius: 5px;
+    background-color: transparent;
+    margin-top: 5px;
+}
+
+.boxContainer button{
+    width: 100%;
+    /* max-width: max-content; */
+    padding: .5rem 1rem;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(248, 191, 22);
+    color: #000;
+    cursor: pointer;
+}
+
+.boxContainer p{
+    font-size: 13px;
+    padding: 1.5rem 0;
+}
+.boxContainer p a{
+    color: rgb(0, 128, 233);
+}
+
+/* .container .hrText{
+    margin-top: 30px;
+}
+
+.container .hrText::after{
+    content: '';
+    width: 100px;
+    height: 1px;
+    background-color: black;
+} */
+
+.container .bottomBoxContainer{
+    width: 375px;
+    height: max-content;
+}
+.container .hrText {
+    font-size: 12px;
+    margin-top: 30px;
+    /* text-align: center; Center the text */
+    position: relative; /* Position the pseudo-elements */
+    color: #7e7e7e;
+  }
+  
+  .container .hrText::before,
+  .container .hrText::after {
+    content: '';
+    position: absolute;
+    top: 50%; /* Position the line in the middle vertically */
+    width: calc(100% - 0px); /* Adjust the width as needed */
+    height: 1px;
+    background-color: #adadad;
+  }
+  
+  
+  .container .hrText::before {
+    left: 0; /* Position the line to the left */
+    transform: translateX(calc(-100% - 5px)); /* Move it to the left */
+  }
+  
+  .container .hrText::after {
+    right: 0; /* Position the line to the right */
+    transform: translateX(calc(100% + 5px)); /* Move it to the right */
+  }
+
+  .container .signUpBtn{
+    width: 375px;
+    padding: .5rem 1rem;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(248, 191, 22);
+    color: #000;
+    cursor: pointer;
+  }

@@ -94,6 +94,7 @@ body {
     )
     rgb(var(--background-start-rgb)); */
     background-color: #e2e2e2;
+    color:#000;
 }
 
 a {
