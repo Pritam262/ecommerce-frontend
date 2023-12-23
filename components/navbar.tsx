@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Styles from '@/app/style/navbar.module.css';
 import Image from 'next/image';
@@ -6,29 +7,29 @@ import { GrLocation } from "react-icons/gr";
 import Link from 'next/link';
 import { useAppContext } from '@/app/context/appContext';
 export default function Navbar() {
-    const {isLogin} = useAppContext();
-    console.log("User is Login navbar",isLogin);
+    const { isLogin } = useAppContext();
+    console.log("User is Login navbar", isLogin);
     return (
         <div className={Styles.navbar}>
             <div className={`${Styles.leftSection} ${Styles.flex}`}>
-            <div className={Styles.logo}>Logo</div>
-            <div className={Styles.flex}>
-            <GrLocation  className={Styles.locIcon}/>
-            {/* <FaSearch  className={Styles.icon}/> */}
-            <div>
-                <p>Delevering to Kolkata 700059</p>
-                <Link href='/'>Update location</Link>
-            </div>
-            <div>
+                <div className={Styles.logo}>Logo</div>
+                <div className={Styles.flex}>
+                    <GrLocation className={Styles.locIcon} />
+                    {/* <FaSearch  className={Styles.icon}/> */}
+                    <div>
+                        <p>Delevering to Kolkata 700059</p>
+                        <Link href='/'>Update location</Link>
+                    </div>
+                    <div>
 
-            </div>
-            </div>
+                    </div>
+                </div>
             </div>
             {/* Center bar */}
 
             <div className={`${Styles.flex} ${Styles.searchSection}`}>
                 <input type="text" name="search" id="" />
-                <FaSearch  className={Styles.searchIcon}/>
+                <FaSearch className={Styles.searchIcon} />
             </div>
 
             {/* Right side */}
@@ -37,14 +38,16 @@ export default function Navbar() {
 
                 <div className={Styles.flex}>
                     <Image src='/india.jpg' width={25} height={20} alt='' />
-                    <p>EN</p>
+                    <p style={{marginLeft:'5px'}}>EN</p>
                 </div>
 
 
                 <div>
-                    <Link href='/login'>
-                    <span>Hello, <span>sign in</span></span></Link>
-                    <p>Account & Lists</p>
+                    {isLogin ? <>  <Link href='/account'>
+                        <span>Hello, <span>Profile</span></span></Link>
+                        <p>Account & Lists</p> </> : <>  <Link href='/login'>
+                            <span>Hello, <span>sign in</span></span></Link>
+                        <p>Account & Lists</p></>}
                 </div>
 
                 <div>
