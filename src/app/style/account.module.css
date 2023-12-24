@@ -27,7 +27,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap:15px;
+    gap: 15px;
     /* background-color: blue; */
 }
 
@@ -41,10 +41,52 @@
     cursor: pointer;
 }
 
-.boxContainer .card img{
+.boxContainer .card img {
     margin-right: 15px;
 }
 
-.boxContainer .card .title{
+.boxContainer .card .title {
+    font-size: 20px;
+}
+
+
+/* Profile page css */
+
+.profileContainer {
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+}
+
+.addressContainer {
+    width: 60%;
+    height: max-content;
+    /* background-color: beige; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 15px;
+    margin-top: 15px;
+}
+
+.addressContainer .addressCard:not(:last-child) {
+    margin-right: 15px;
+}
+
+.addressCard {
+    /* width: 250px; */
+    height: max-content;
+    border: 1px solid #a9a9a9;
+    padding: 10px;
+    position: relative;
+}
+
+.addressCard .optionBtn {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    transform: translate(0, -10px);
+}
+
+.addressCard .optionBtn .optionBtnIcon {
     font-size: 20px;
 }

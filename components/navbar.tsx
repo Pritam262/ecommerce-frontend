@@ -7,8 +7,7 @@ import { GrLocation } from "react-icons/gr";
 import Link from 'next/link';
 import { useAppContext } from '@/app/context/appContext';
 export default function Navbar() {
-    const { isLogin } = useAppContext();
-    console.log("User is Login navbar", isLogin);
+    const { isLogin, profileData } = useAppContext();
     return (
         <div className={Styles.navbar}>
             <div className={`${Styles.leftSection} ${Styles.flex}`}>
@@ -38,13 +37,13 @@ export default function Navbar() {
 
                 <div className={Styles.flex}>
                     <Image src='/india.jpg' width={25} height={20} alt='' />
-                    <p style={{marginLeft:'5px'}}>EN</p>
+                    <p style={{ marginLeft: '5px' }}>EN</p>
                 </div>
 
 
                 <div>
                     {isLogin ? <>  <Link href='/account'>
-                        <span>Hello, <span>Profile</span></span></Link>
+                        <span>Hello, <span>{profileData?.fname}</span></span></Link>
                         <p>Account & Lists</p> </> : <>  <Link href='/login'>
                             <span>Hello, <span>sign in</span></span></Link>
                         <p>Account & Lists</p></>}
