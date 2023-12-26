@@ -7,7 +7,8 @@ import { GrLocation } from "react-icons/gr";
 import Link from 'next/link';
 import { useAppContext } from '@/app/context/appContext';
 export default function Navbar() {
-    const { isLogin, profileData } = useAppContext();
+    const { isLogin, profileData, cartData } = useAppContext();
+    console.log('Cart data', cartData);
     return (
         <div className={Styles.navbar}>
             <div className={`${Styles.leftSection} ${Styles.flex}`}>
@@ -54,9 +55,11 @@ export default function Navbar() {
                     <p>& Orders</p>
                 </div>
 
+                <Link href="/account/cart">
                 <div>
-                    <p>Cart</p>
+                    <p>Cart {cartData?.products.length}</p>
                 </div>
+                </Link>
 
             </div>
         </div>

@@ -1,0 +1,62 @@
+.page{
+width: 100vw;
+min-height: 100vh;
+max-height: max-content;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.container{
+    width: 80%;
+    height: max-content;
+    background-color: azure;
+    display: grid;
+    gap: 15px;
+    grid-template-areas: 'cart cart cart cart subtotal subtotal'
+    'cart cart cart cart likecomp likecomp'
+    'savecomp savecomp savecomp savecomp likecomp likecomp';
+}
+.cartComponent{
+    width: 100%;
+    height: max-content;
+    background-color: blue;
+    grid-area: cart;
+
+}
+.cart{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    background-color: bisque;
+    border: 1px solid red;
+}
+
+.subTotalComp{
+    width: 100%;
+    height: 180px;
+    background-color: blueviolet;
+    grid-area: subtotal;
+}
+
+.likeCartComp{
+    width: 100%;
+    min-height: 100px;
+    max-height: max-content;
+    background-color:chocolate;
+    grid-area: likecomp;
+}
+.saveComp{
+    width: 100%;
+    height: 250px;
+    background-color: brown;
+    grid-area: savecomp;
+}
+
+.recomentComp{
+    width: 100%;
+    height: 300px;
+    background-color: bisque;
+    margin-top: 15px;
+}

@@ -40,7 +40,7 @@ export default function Profile() {
         <div className={Styles.profileContainer}>
             <p>Name: {profileData?.fname} {profileData?.lname}</p>
             <p>Email: {profileData?.email}</p>
-            <p>Password:xxxxxxx</p>
+            <span style={{display:'flex', alignItems:'center'}}><p>Password:xxxxxxx</p> <FaEdit style={{marginLeft:'10px'}}/></span>
             <p>Phone: {`+${profileData?.countryCode} ${profileData?.phone}`}</p>
 
             <div className={Styles.addressContainer}>
