@@ -1,5 +1,5 @@
 'use client'
-import styles from './page.module.css'
+import styles from '@/app/page.module.css'
 import {useState} from 'react';
 export default function FileUpload() {
 
@@ -43,18 +43,18 @@ formData.append('color', product.color);
 
 for (let i = 0; i < product.images.length; i++) {
   formData.append(`images`, product.images[i]);
-  console.log(product.images[0]);
 }
 
     const response = await fetch('http://127.0.0.1:3000/api/product/upload', {
       method: 'POST',
       headers: {
-        'auth-token': localStorage.getItem('sellerToken') || '', // Add token here
+        'seller-token': localStorage.getItem('seller-token') || '', // Add token here
       },
       body: formData,
     });
 
-    console.log(await response.json())
+    const data = await response.json();
+    console.log("Upload response",data)
     // Handle response as needed
   };
   return (

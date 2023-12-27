@@ -23,13 +23,15 @@ export default function Profile(){
                         <p>Edit, login, name and mobile number</p>
                     </div>
                 </div></Link>
+                <Link href="/account/profile/address">
                 <div className={Styles.card}>
                     <Image src='/' width={60} height={50} alt="" priority/>
                     <div>
                         <p className={Styles.title}>Your address</p>
                         <p>Edit and add address</p>
                     </div>
-                </div>
+                </div> 
+                </Link>
                 <div className={Styles.card}>
                     <Image src='/' width={60} height={50} alt="" priority/>
                     <div>

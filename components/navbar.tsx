@@ -57,7 +57,7 @@ export default function Navbar() {
 
                 <Link href="/account/cart">
                 <div>
-                    <p>Cart {cartData?.products.length}</p>
+                    <p>Cart {cartData?.totalLength}</p>
                 </div>
                 </Link>
 

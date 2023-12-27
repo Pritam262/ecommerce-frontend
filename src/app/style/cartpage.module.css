@@ -1,62 +1,110 @@
-.page{
-width: 100vw;
-min-height: 100vh;
-max-height: max-content;
-display: flex;
-flex-direction: column;
-align-items: center;
+.page {
+    width: 100vw;
+    min-height: 100vh;
+    max-height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: azure;
 }
 
-.container{
-    width: 80%;
+.container {
+    width: 85%;
     height: max-content;
-    background-color: azure;
+    margin-top: 15px;
     display: grid;
     gap: 15px;
-    grid-template-areas: 'cart cart cart cart subtotal subtotal'
-    'cart cart cart cart likecomp likecomp'
-    'savecomp savecomp savecomp savecomp likecomp likecomp';
+    grid-template-areas:
+        'cart cart cart cart subtotal subtotal'
+        'cart cart cart cart likecomp likecomp'
+        'savecomp savecomp savecomp savecomp likecomp likecomp';
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 columns for the 5 areas */
 }
-.cartComponent{
+
+.cartComponent {
     width: 100%;
     height: max-content;
-    background-color: blue;
+    /* background-color: blue; */
+    padding-bottom: 15px;
     grid-area: cart;
 
 }
-.cart{
+
+.cart {
     width: 100%;
     height: 200px;
     display: flex;
     align-items: center;
-    background-color: bisque;
-    border: 1px solid red;
+    /* background-color: bisque; */
+    /* border: 1px solid red; */
+    position: relative;
+    margin-bottom: 20px;
 }
 
-.subTotalComp{
+.cart::after {
+    content: '';
+    position: absolute;
+    top: 102%;
+    width: calc(100% - 0px);
+    height: 1.5px;
+    background-color: #adadad;
+    left: 0;
+}
+
+.cart .details {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15px;
+    padding: 15px;
+    /* background-color: blueviolet; */
+}
+
+.cart .details .priceDiv {
+    width: 85%;
+    height: 100%;
+}
+
+.subTotalComp {
     width: 100%;
     height: 180px;
-    background-color: blueviolet;
-    grid-area: subtotal;
+    background-color: rgb(219, 219, 219);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    grid-area: subtotal / span 2;
+    /* Adjust the span to take up 2 columns */
 }
 
-.likeCartComp{
+.subTotalComp button {
+    padding: .5rem 1.5rem;
+    background-color: rgb(210, 126, 30);
+    border: none
+}
+
+.likeCartComp {
     width: 100%;
     min-height: 100px;
     max-height: max-content;
-    background-color:chocolate;
-    grid-area: likecomp;
+    background-color: rgb(230, 230, 230);
+    grid-area: likecomp / span 2;
+    /* Adjust the span to take up 4 columns */
 }
-.saveComp{
+
+.saveComp {
     width: 100%;
     height: 250px;
-    background-color: brown;
+    background-color: rgb(219, 219, 219);
     grid-area: savecomp;
 }
 
-.recomentComp{
+.recomentComp {
     width: 100%;
     height: 300px;
-    background-color: bisque;
+    /* background-color: bisque; */
     margin-top: 15px;
+    position: relative;
 }

@@ -21,7 +21,7 @@ interface ProfileData {
 }
 
 interface CartProducts {
-    _id: string;
+    id: string;
     productId: string;
     title:string;
     imageUrl: string;
@@ -31,7 +31,8 @@ interface CartProducts {
 }
 interface CartData {
     products: Array<CartProducts>;
-    proTotalPrice: string;
+    totalPrice: string;
+    totalLength:string;
 }
 type AppContextType = {
     isLogin: boolean;

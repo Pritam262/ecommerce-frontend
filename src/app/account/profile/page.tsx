@@ -42,24 +42,6 @@ export default function Profile() {
             <p>Email: {profileData?.email}</p>
             <span style={{display:'flex', alignItems:'center'}}><p>Password:xxxxxxx</p> <FaEdit style={{marginLeft:'10px'}}/></span>
             <p>Phone: {`+${profileData?.countryCode} ${profileData?.phone}`}</p>
-
-            <div className={Styles.addressContainer}>
-
-                {profileData?.address.map((item, index: number) => (
-                    <div className={Styles.addressCard} key={index}>
-                        <p>Id: {profileData?._id}</p>
-                        <p>Address: {item.addressline}</p>
-                        <p>Phone: {item.phone}</p>
-                        <p>Dist: {item.district}</p>
-                        <p>State: {item.stateName}</p>
-                        <p>Pin: {item.pinCode}</p>
-                        <div className={Styles.optionBtn}>
-                            <FaEdit className={Styles.optionBtnIcon} onClick={()=>editAddress(profileData?._id, index)} />
-                            <MdOutlineDelete className={Styles.optionBtnIcon} onClick={()=>deleteAddress(profileData?._id, index)} />
-                        </div>
-                    </div>
-                ))}
-            </div>
         </div>
     )
 }
