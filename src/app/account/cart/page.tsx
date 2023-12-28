@@ -1,10 +1,14 @@
 'use client'
-
+import React, { ReactEventHandler } from "react";
 import { useAppContext } from "@/app/context/appContext";
 import Styles from '@/app/style/cartpage.module.css';
 import Image from "next/image";
 export default function CartPage() {
     const { cartData } = useAppContext();
+
+    const handleDelete = (e:React.MouseEvent<HTMLButtonElement> ) => {
+        console.log("Delete cart item", e.currentTarget.value)
+    }
     return (
 
         <div className={Styles.page}>
@@ -14,15 +18,34 @@ export default function CartPage() {
                 <div className={Styles.cartComponent}>
                     {cartData?.products.map((item, index) => {
                         return (
-                            <div className={Styles.cart} key={item.id}>
-                                <Image src={item.imageUrl} width={150} height={200} alt=" " priority />
-                                <div className={Styles.details}>
+                            <div key={item.id}>
+                                <div className={Styles.cart} >
+                                    <Image src={item.imageUrl} width={150} height={200} alt=" " priority />
+                                    <div className={Styles.details}>
 
-                                    <div className={Styles.priceDiv}>
-                                        <p>{item.title}</p>
-                                        <p>Qty: {item.qty}</p>
+                                        <div className={Styles.priceDiv}>
+                                            <div>
+
+                                                <p>{item.title}</p>
+                                                <p>Qty: {item.qty}</p>
+                                            </div>
+
+                                            <div className={Styles.actionBtn}>
+                                                <button value={item.id} onClick={handleDelete}>Delete</button>
+                                                <button value={item.id} >Move to save</button>
+                                            </div>
+
+                                        </div>
+
+                                        <div className={Styles.rightPrice}>
+
+                                            <p>₹ {item.price}</p>
+
+                                            <div className={Styles.proTotalPrice}>
+                                                <p>Total Price: ₹ {item.proTotalPrice} </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p>₹ {item.price}</p>
                                 </div>
                             </div>
                         )
