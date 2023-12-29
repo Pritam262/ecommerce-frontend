@@ -91,13 +91,29 @@
     position: relative;
 }
 
-.addressCard .optionBtn {
+/* .addressCard .optionBtn {
     position: absolute;
     right: 10px;
     bottom: 0;
     transform: translate(0, -10px);
+} */
+
+.addressCard .optionBtn{
+    margin-top: 10px;
 }
 
 .addressCard .optionBtn .optionBtnIcon {
-    font-size: 20px;
+    font-size: 15px;
+    padding: .3rem .5rem;
+    background-color: transparent;
+    border: 1px solid #a9a9a9;
+    color: #000;
+    margin-left: 5px;
+}
+
+
+.addressCard .optionBtn:not(:last-child){
+    margin-left: 5px;
+    /* background-color: blueviolet; */
+    border: 1px solid red;
 }

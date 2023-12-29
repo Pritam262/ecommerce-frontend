@@ -5,13 +5,13 @@ import { MdOutlineDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 
 export default function Address() {
-    const { profileData } = useAppContext();
-    const editAddress = (id: string, index: number) => {
-        console.log("Update product", id, "Index", index);
+    const { profileData, deleteAddress } = useAppContext();
+    const editAddress = (user: string, id: string, index: number) => {
+        console.log(`Update product : ${id} index: ${index} by ${user}`);
     }
-    const deleteAddress = (id: string, index: number) => {
-        console.log("Delete product", id, "Index", index);
-    }
+    // const deleteAddress = (user: string, id: string, index: number) => {
+    //     console.log(`Delete product : ${id} index: ${index} by ${user}`);
+    // }
 
     return (
         <div className={Styles.addressPage}>
@@ -19,15 +19,16 @@ export default function Address() {
             <div className={Styles.addressContainer}>
                 {profileData?.address.map((item, index: number) => (
                     <div className={Styles.addressCard} key={index}>
-                        <p>Id: {profileData?._id}</p>
                         <p>Address: {item.addressline}</p>
                         <p>Phone: {item.phone}</p>
                         <p>Dist: {item.district}</p>
                         <p>State: {item.stateName}</p>
                         <p>Pin: {item.pinCode}</p>
+                        <p>City: {item.city}</p>
                         <div className={Styles.optionBtn}>
-                            <FaEdit className={Styles.optionBtnIcon} onClick={() => editAddress(profileData?._id, index)} />
-                            <MdOutlineDelete className={Styles.optionBtnIcon} onClick={() => deleteAddress(profileData?._id, index)} />
+                            <button className={Styles.optionBtnIcon} onClick={() => editAddress(profileData?.user, item.id, index)}>Edit</button>
+                            <button className={Styles.optionBtnIcon} onClick={() => deleteAddress(profileData?.user, item.id, index)}>Delete</button>
+                            {item?.isDefault ? "" : <button className={Styles.optionBtnIcon}>Make Default</button>}
                         </div>
                     </div>
                 ))}

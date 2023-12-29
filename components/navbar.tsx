@@ -4,11 +4,11 @@ import Styles from '@/app/style/navbar.module.css';
 import Image from 'next/image';
 import { FaSearch } from "react-icons/fa";
 import { GrLocation } from "react-icons/gr";
+import { FiShoppingCart } from "react-icons/fi";
 import Link from 'next/link';
 import { useAppContext } from '@/app/context/appContext';
 export default function Navbar() {
     const { isLogin, profileData, cartData } = useAppContext();
-    console.log('Cart data', cartData);
     return (
         <div className={Styles.navbar}>
             <div className={`${Styles.leftSection} ${Styles.flex}`}>
@@ -17,8 +17,8 @@ export default function Navbar() {
                     <GrLocation className={Styles.locIcon} />
                     {/* <FaSearch  className={Styles.icon}/> */}
                     <div>
-                        <p>Delevering to Kolkata 700059</p>
-                        <Link href='/'>Update location</Link>
+                        {isLogin ? <p> {profileData?.address[0].city} {profileData?.address[0].pinCode}</p> : <p>Kolkata 700059</p>}
+                        {isLogin ? <Link href='/account/profile/address'>Update location</Link> : <p>Update location</p>}
                     </div>
                     <div>
 
@@ -42,7 +42,7 @@ export default function Navbar() {
                 </div>
 
 
-                <div>
+                <div className={Styles.account}>
                     {isLogin ? <>  <Link href='/account'>
                         <span>Hello, <span>{profileData?.fname}</span></span></Link>
                         <p>Account & Lists</p> </> : <>  <Link href='/login'>
@@ -50,15 +50,16 @@ export default function Navbar() {
                         <p>Account & Lists</p></>}
                 </div>
 
-                <div>
+                <div className={Styles.returnDiv}>
                     <p>Returns</p>
                     <p>& Orders</p>
                 </div>
 
                 <Link href="/account/cart">
-                <div>
-                    <p>Cart {cartData?.totalLength}</p>
-                </div>
+                    <div className={Styles.cartItem}>
+                    <FiShoppingCart className={Styles.cartIcon}/>
+                    <p className={Styles.cartNum}>{cartData?.totalLength}</p>
+                    </div>
                 </Link>
 
             </div>

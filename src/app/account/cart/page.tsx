@@ -4,11 +4,9 @@ import { useAppContext } from "@/app/context/appContext";
 import Styles from '@/app/style/cartpage.module.css';
 import Image from "next/image";
 export default function CartPage() {
-    const { cartData } = useAppContext();
+    const { cartData, handleDeleteCartProduct } = useAppContext();
 
-    const handleDelete = (e:React.MouseEvent<HTMLButtonElement> ) => {
-        console.log("Delete cart item", e.currentTarget.value)
-    }
+
     return (
 
         <div className={Styles.page}>
@@ -31,7 +29,7 @@ export default function CartPage() {
                                             </div>
 
                                             <div className={Styles.actionBtn}>
-                                                <button value={item.id} onClick={handleDelete}>Delete</button>
+                                                <button value={item.id} onClick={() => handleDeleteCartProduct(item.id)}>Delete</button>
                                                 <button value={item.id} >Move to save</button>
                                             </div>
 

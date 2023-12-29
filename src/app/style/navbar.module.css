@@ -48,7 +48,38 @@
 }
 
 .rightNavbar{
-    width: 15%;
+    /* width: 20%; */
     margin-right: 30px;
     /* background-color: blueviolet; */
+}
+
+.rightNavbar .account{
+    margin: 0 10px 0 5px;
+}
+
+.rightNavbar .returnDiv{
+    margin: 0 5px 0 10px;
+}
+
+.rightNavbar .cartItem{
+display: flex;
+align-items: center;
+/* background-color: bisque; */
+position: relative;
+}
+.rightNavbar .cartIcon{
+font-size: 25px;
+/* position: relative; */
+}
+.rightNavbar .cartNum{
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    color: #000;
+    background-color: yellow;
+    border-radius: 50%;
+    position: absolute;
+    top: 100;
+    right: 0;
+    transform: translate(-0%, -100%);
 }
