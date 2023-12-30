@@ -9,7 +9,7 @@ export default function Profile(){
             <div className={Styles.boxContainer}>
 
                 <div className={Styles.card}>
-                    <Image src='/' width={60} height={50} alt="" priority/>
+                    <Image src='/assets/images/box.png' width={60} height={50} alt="" priority/>
                     <div>
                         <p className={Styles.title}>Your Orders</p>
                         <p>Track, return, or buy things again</p>
@@ -17,7 +17,7 @@ export default function Profile(){
                 </div>
                 <Link href='/account/profile'>
                 <div className={Styles.card}>
-                    <Image src='/' width={60} height={50} alt="" priority/>
+                    <Image src='/assets/images/authentication.png' width={60} height={50} alt="" priority/>
                     <div>
                         <p className={Styles.title}>Login & security</p>
                         <p>Edit, login, name and mobile number</p>
@@ -25,7 +25,7 @@ export default function Profile(){
                 </div></Link>
                 <Link href="/account/profile/address">
                 <div className={Styles.card}>
-                    <Image src='/' width={60} height={50} alt="" priority/>
+                    <Image src='/assets/images/location.png' width={60} height={50} alt="" priority/>
                     <div>
                         <p className={Styles.title}>Your address</p>
                         <p>Edit and add address</p>
@@ -33,7 +33,7 @@ export default function Profile(){
                 </div> 
                 </Link>
                 <div className={Styles.card}>
-                    <Image src='/' width={60} height={50} alt="" priority/>
+                    <Image src='/assets/images/info.png' width={60} height={50} alt="" priority/>
                     <div>
                         <p className={Styles.title}>Contact us</p>
                         <p></p>
