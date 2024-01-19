@@ -35,7 +35,7 @@ interface CartProducts {
 interface CartData {
     products: Array<CartProducts>;
     totalPrice: string;
-    totalLength: string;
+    totalLength: number;
 }
 type AppContextType = {
     isLogin: boolean;
@@ -44,6 +44,7 @@ type AppContextType = {
     cartData: CartData | null | undefined;
     deleteAddress: (user: string, id: string, index: number) => void;
     handleDeleteCartProduct: (id: string) => void;
+    hostUrl: string;
 
 };
 
@@ -70,6 +71,8 @@ export function AppProvider({ children }: AppProviderProps) {
     const [profileData, setProfileData] = useState<ProfileData | null | undefined>();
     const [cartData, setCartData] = useState<CartData | null | undefined>();
 
+    const hostUrl = "http://127.0.0.1:3000";
+
     // Get profile data
 
     const getProfile = async () => {
@@ -80,7 +83,7 @@ export function AppProvider({ children }: AppProviderProps) {
         }
 
         try {
-            const response = await fetch('http://127.0.0.1:3000/api/auth/profile', {
+            const response = await fetch(`${hostUrl}/api/auth/profile`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -105,18 +108,32 @@ export function AppProvider({ children }: AppProviderProps) {
 
     // Delete address
 
-    const deleteAddress = (user: string, id: string, index: number) => {
+    const deleteAddress = async (user: string, id: string, index: number) => {
         try {
             // Make the API call to delete the address
 
             // Assuming API call to delete the address is successful
-            if (profileData && profileData.address) {
-                const updatedProfileData = { ...profileData };
-                updatedProfileData.address = updatedProfileData.address.filter((address) => address.id !== id);
-                setProfileData(updatedProfileData);
 
-                console.log(`Successfully deleted address: ${index} by: ${user} and id: ${id}`);
-            } else {
+            const response = await fetch(`${hostUrl}/api/auth/deleteaddress/?id=${id}`, {
+                method: 'delete',
+                headers: {
+                    'auth-token': `${localStorage.getItem('auth-token')}`,
+                }
+            });
+
+            const data = await response.json();
+
+            if (response.status === 200) {
+                if (profileData && profileData.address) {
+                    const updatedProfileData = { ...profileData };
+                    updatedProfileData.address = updatedProfileData.address.filter((address) => address.id !== id);
+                    setProfileData(updatedProfileData);
+
+                    console.log(`Successfully deleted address: ${index} by: ${user} and id: ${id}`);
+
+                }
+            }
+            else {
                 console.error('Profile data or address is undefined');
             }
         } catch (error) {
@@ -134,7 +151,7 @@ export function AppProvider({ children }: AppProviderProps) {
         }
 
         try {
-            const response = await fetch('http://127.0.0.1:3000/api/product/cartproduct', {
+            const response = await fetch(`${hostUrl}/api/product/cartproduct`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -161,28 +178,28 @@ export function AppProvider({ children }: AppProviderProps) {
     const handleDeleteCartProduct = async (id: string) => {
         try {
             if (cartData) {
-                const response = await fetch(`http://127.0.0.1:3000/api/product/deletecart?cartId=${id}`, {
+                const response = await fetch(`${hostUrl}/api/product/deletecart?cartId=${id}`, {
                     method: "DELETE",
                     headers: {
                         'auth-token': `${localStorage.getItem('auth-token')}`,
                     }
                 });
-    
+
                 if (!response.ok) {
                     // Handle unsuccessful deletion (perhaps show an error message)
                     throw new Error('Failed to delete product from cart');
                 }
-    
+
                 const responseData = await response.json();
                 const updatedCartData = { ...cartData };
                 updatedCartData.products = updatedCartData.products.filter((product) => product.id !== id);
-                
+
                 // Recalculate total price and total length after deletion
                 updatedCartData.totalPrice = calculateTotalPrice(updatedCartData.products);
                 updatedCartData.totalLength = calculateTotalLength(updatedCartData.products);
-    
+
                 setCartData(updatedCartData);
-    
+
                 console.log(`Successfully deleted product: ${id}`);
             } else {
                 console.error('Product not found');
@@ -194,21 +211,21 @@ export function AppProvider({ children }: AppProviderProps) {
 
 
     // 
-// Function to calculate total price
-const calculateTotalPrice = (products: CartProducts[]): string => {
-    const totalPrice = products.reduce((acc, product) => {
-        return acc + product.proTotalPrice;
-    }, 0);
-    return totalPrice.toString(); // Assuming totalPrice is a string in your CartData interface
-};
+    // Function to calculate total price
+    const calculateTotalPrice = (products: CartProducts[]): string => {
+        const totalPrice = products.reduce((acc, product) => {
+            return acc + product.proTotalPrice;
+        }, 0);
+        return totalPrice.toString(); // Assuming totalPrice is a string in your CartData interface
+    };
 
-// Function to calculate total length (total quantity of items in the cart)
-const calculateTotalLength = (products: CartProducts[]): string => {
-    const totalQty = products.reduce((acc, product) => {
-        return acc + product.qty;
-    }, 0);
-    return totalQty.toString(); // Return the total quantity as a string
-};
+    // Function to calculate total length (total quantity of items in the cart)
+    const calculateTotalLength = (products: CartProducts[]): number => {
+        const totalQty = products.reduce((acc, product) => {
+            return acc + product.qty;
+        }, 0);
+        return totalQty; // Return the total quantity as a string
+    };
 
     useEffect(() => {
 
@@ -228,6 +245,7 @@ const calculateTotalLength = (products: CartProducts[]): string => {
         cartData,
         deleteAddress,
         handleDeleteCartProduct,
+        hostUrl,
     };
 
     return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

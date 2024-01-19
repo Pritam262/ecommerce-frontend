@@ -9,7 +9,8 @@ export default function CartPage() {
 
     return (
 
-        <div className={Styles.page}>
+        <>
+        {(cartData?.totalLength === 0) ? <div>No Item in cart</div> : <div className={Styles.page}>
             <div className={Styles.container}>
 
 
@@ -72,5 +73,7 @@ export default function CartPage() {
 
 
         </div>
+                }
+                </>
     )
 }
