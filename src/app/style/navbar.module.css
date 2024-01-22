@@ -12,6 +12,7 @@
     background-color: #161414;
     color: #fff;
     /* background-color: brown; */
+    position: relative;
 }
 
 .leftSection{
@@ -82,4 +83,18 @@ font-size: 25px;
     top: 100;
     right: 0;
     transform: translate(-0%, -100%);
+}
+
+
+.searchSuggestion{
+    width: 800px;
+    height: 400px;
+    background-color: bisque;
+    position: absolute;
+    top: 8vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 2;
+    color: #000;
+
 }
