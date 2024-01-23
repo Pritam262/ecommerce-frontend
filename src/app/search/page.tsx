@@ -2,7 +2,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 export async function generateMetadata({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }): Promise<Metadata> {
     // read route params
@@ -38,10 +37,10 @@ export default async function searchProducts({ searchParams }: { searchParams: {
     return (
         <div>
             {/* <p>Search query: {searchParams?.q} and id: {searchParams?.id}</p> */}
-            {resData && resData.products.map((item: any) => {
+   { (response.status === 200) ? <> {resData &&  resData.products.map((item: any) => {
                 return (
                         <div key={item?.id}>
-                            <Link href={`/${item?.title}&id=${item?.id}`}>
+                            <Link href={`/product?q=${item?.title}&id=${item?.id}`}>
 
                             <Image src={item?.imageUrl} width={150} height={200} alt='' />
 
@@ -52,12 +51,15 @@ export default async function searchProducts({ searchParams }: { searchParams: {
                             </Link>
                         </div>
                 )
-            })}
+            })} </>: <div>Product not found</div>
+}
+
+            {/* {(response.status===200)? <div>Product found </div>: <div>No product found </div>} */}
 
 <div>
     <button style={{padding: '.5rem 1.5rem'}}>1</button>
     <button style={{padding: '.5rem 1.5rem', marginLeft:'15px'}}>{resData && resData?.totalPage}</button>
-    <Link href={`http://127.0.0.1:3001/search?q=${searchParams.q}&id=${searchParams.id}&page=2`}> <button style={{padding: '.5rem 1.5rem'}}>Next</button></Link>
+   { (resData.totalPage != resData.page) ?<Link href={`http://127.0.0.1:3001/search?q=${searchParams.q}&id=${searchParams.id}&page=${parseInt(resData.page)+1}`}> <button style={{padding: '.5rem 1.5rem'}}>Next</button></Link> :""}
 </div>
 
 
