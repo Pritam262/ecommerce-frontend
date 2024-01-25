@@ -1,0 +1,30 @@
+.page{
+    width: 90vw;
+    min-height: 100vh;
+    max-height: fit-content;
+    /* margin: auto 0 0 auto; */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+   /* padding: 10px 0 0 10px; */
+    /* background-color: brown; */
+    /* background-color: #fff; */
+}
+
+.productComponent{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    margin-top: 50px;
+}
+
+.productDetails{
+    width: 40%;
+    background-color: chartreuse;
+}
+
+.buyOption{
+    width: 20%;
+    height: auto;
+    background-color: chocolate;
+}
