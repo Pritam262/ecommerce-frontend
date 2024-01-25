@@ -50,7 +50,6 @@ export default function Navbar() {
             
             const response = await fetch(`${hostUrl}/api/product/search-suggestions?query=${prefix}`);
             const resData = await response.json();
-            console.log("Suggestions", resData);
             setSuggestions(resData);
         } 
         catch (error) {

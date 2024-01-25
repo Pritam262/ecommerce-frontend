@@ -31,9 +31,8 @@ export default async function searchProducts({ searchParams }: { searchParams: {
     // }
     // fetchSearchProducts(1);
 
-    const response = await fetch(`http://127.0.0.1:3000/api/product/searchproducts?query=${searchParams.q}&page=${searchParams.page}`);
+    const response = await fetch(`http://127.0.0.1:3000/api/product/searchproducts?query=${searchParams.q}&page=${searchParams.page}`, {cache:'no-cache'});
     const resData = await response.json();
-    // console.log(resData);
     return (
         <div>
             {/* <p>Search query: {searchParams?.q} and id: {searchParams?.id}</p> */}

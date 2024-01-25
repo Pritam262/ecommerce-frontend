@@ -1,13 +1,54 @@
 "use client"
-export default function Button(id:any){
+export default function Button(props: any) {
 
-    const cartProduct = async (id:string)=>{
-
-        console.log("Cart product", id);
+    const CartProduct = {
+        id: props.id,
+        title: props.title,
+        qty: 1,
     }
-    console.log("Product ID Show",id);
+    const cartProduct = async (id: string, qty:string) => {
 
-    return(
-        <div style={{ margin: "15px", cursor: "pointer", border: " 1px solid #000", width: "max-content", padding: " .5rem 1.5rem" }} onClick={()=>cartProduct(id.id)}>Cart</div>
+        try {
+
+            const setCart = await fetch(`http://127.0.0.1:3000/api/product/cart?proId=${id}`, {
+                method: 'post',
+                headers: {
+                    'Content-Type':'application/json',
+                    'auth-token': `${localStorage.getItem('auth-token')}`
+                },
+                body: JSON.stringify({ qty: qty })
+            })
+
+            
+            if (setCart.status === 200) {
+                localStorage.setItem("cart-product", JSON.stringify(CartProduct))
+                console.log(await setCart.json())
+                // console.log("Cart product", id);
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const getLocalStorageData = () => {
+
+        try {
+
+            const getLocalStorageData = localStorage.getItem('cart-product');
+
+            if (getLocalStorageData != null) {
+
+                // console.log("Get localStorage data", JSON.parse(getLocalStorageData));
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+    getLocalStorageData();
+
+    return (
+        <div style={{ margin: "15px", cursor: "pointer", border: " 1px solid #000", width: "max-content", padding: " .5rem 1.5rem" }} onClick={() => cartProduct(props.id, "")}>Cart</div>
     )
 }

@@ -16,7 +16,7 @@ export default function CartPage() {
 
                 <div className={Styles.cartComponent}>
                     {cartData?.products.map((item, index) => {
-                        return (
+                    return (
                             <div key={item.id}>
                                 <div className={Styles.cart} >
                                     <Image src={item.imageUrl} width={150} height={200} alt=" " priority />

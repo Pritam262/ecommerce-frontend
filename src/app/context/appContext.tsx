@@ -157,6 +157,8 @@ export function AppProvider({ children }: AppProviderProps) {
                     'Content-Type': 'application/json',
                     'auth-token': authToken,
                 },
+
+                cache:'no-cache',
             });
 
             if (!response.ok) {
