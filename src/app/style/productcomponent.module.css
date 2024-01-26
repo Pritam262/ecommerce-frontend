@@ -1,7 +1,7 @@
 .container{
     width: 50%;
     display: flex;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
 }
 
 .navigateImageContainer{
@@ -13,6 +13,8 @@ flex-direction: column;
     width: 60px;
     height: 60px;
     margin: 5px;
+    border: 1px solid #9f9f9f;
+    border-radius: 5px;
 }
 .imageContainer{
     width: 100%;
@@ -29,3 +31,4 @@ flex-direction: column;
     /* height: 450px; */
     height: calc(width);
 }
+

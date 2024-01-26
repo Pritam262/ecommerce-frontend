@@ -20,8 +20,23 @@
 
 .productDetails{
     width: 40%;
-    background-color: chartreuse;
+    padding: 0 10px 0 10px;
+    /* background-color: chartreuse; */
 }
+
+.title{
+    font-size: 35px;
+    font-weight: 500;
+}
+.link{
+    font-size: 15px;
+    color:rgb(0, 115, 255)
+}
+.price{
+    font-size: 20px;
+}
+
+
 
 .buyOption{
     width: 20%;

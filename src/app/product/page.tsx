@@ -60,8 +60,8 @@ export default async function productPage({ params, searchParams }: { params: { 
 
 
                 <div className={Styles.buyOption}>
-                    <span>With exchage <input type="radio" name="type" id="" value="exchange" /></span>
-                    <span>Without exchange <input type="radio" name="type" id="" value="withoutexchange"/></span>
+                    <span><input type="radio" name="type" id="" value="exchange" /> With Exchnage</span>
+                    <span><input type="radio" name="type" id="" value="withoutexchange" defaultChecked/> Without Exchange</span>
 
                     <div>
                 <Button id={String(data?.id)} title={data?.title} />

@@ -2,6 +2,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import Styles from "@/app/style/searchpage.module.css";
 
 export async function generateMetadata({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }): Promise<Metadata> {
     // read route params
@@ -31,37 +32,41 @@ export default async function searchProducts({ searchParams }: { searchParams: {
     // }
     // fetchSearchProducts(1);
 
-    const response = await fetch(`http://127.0.0.1:3000/api/product/searchproducts?query=${searchParams.q}&page=${searchParams.page}`, {cache:'no-cache'});
+    const response = await fetch(`http://127.0.0.1:3000/api/product/searchproducts?query=${searchParams.q}&page=${searchParams.page}`, { cache: 'no-cache' });
     const resData = await response.json();
     return (
-        <div>
-            {/* <p>Search query: {searchParams?.q} and id: {searchParams?.id}</p> */}
-   { (response.status === 200) ? <> {resData &&  resData.products.map((item: any) => {
-                return (
-                        <div key={item?.id}>
-                            <Link href={`/product?q=${item?.title}&id=${item?.id}`}>
 
-                            <Image src={item?.imageUrl} width={150} height={200} alt='' />
+        <div className={Styles.page}>
 
-                            <div>
-                                <p>{item?.title}</p>
-                                <p>₹ {item?.price}</p>
+            <div className={Styles.cardContainer}>
+                {/* <p>Search query: {searchParams?.q} and id: {searchParams?.id}</p> */}
+                {(response.status === 200) ? <> {resData && resData.products.map((item: any) => {
+                    return (
+                        <Link href={`/product?q=${item?.title}&id=${item?.id}`}>
+                            <div key={item?.id} className={Styles.card}>
+
+                                <Image src={item?.imageUrl} className={Styles.image} width={150} height={200} alt='' />
+
+                                <div className={Styles.proDetails}>
+                                    <p className={Styles.title}>{item?.title}</p>
+                                    <span><p>Star</p> 1,314</span>
+                                    <span className={Styles.price}><span>₹</span> <span className={Styles.priceTag}><p >{item?.price}</p> <span className={Styles.offPrice}>M.R.P: ₹ 89,999 (28% off)</span></span></span>
+                                    <span className={Styles.offerTag}>Flat INR 10000 on HDFC BankCard</span>
+                                    <p>prime</p>
+                                    <p className={Styles.stockDetails}>only 2 left in stock</p>
+                                </div>
                             </div>
-                            </Link>
-                        </div>
-                )
-            })} </>: <div>Product not found</div>
-}
+                        </Link>
+                    )
+                })} </> : <div>Product not found</div>
+                }
 
-            {/* {(response.status===200)? <div>Product found </div>: <div>No product found </div>} */}
-
-<div>
-    <button style={{padding: '.5rem 1.5rem'}}>1</button>
-    <button style={{padding: '.5rem 1.5rem', marginLeft:'15px'}}>{resData && resData?.totalPage}</button>
-   { (resData.totalPage != resData.page) ?<Link href={`http://127.0.0.1:3001/search?q=${searchParams.q}&id=${searchParams.id}&page=${parseInt(resData.page)+1}`}> <button style={{padding: '.5rem 1.5rem'}}>Next</button></Link> :""}
-</div>
-
-
+            </div>
+            <div>
+                {(resData.totalPage != 1) ? <>  <button style={{ padding: '.5rem 1.5rem' }}>1</button>
+                    <button style={{ padding: '.5rem 1.5rem', marginLeft: '15px' }}>{resData && resData?.totalPage}</button> </> : ""}
+                {(resData.totalPage != resData.page) ? <Link href={`http://127.0.0.1:3001/search?q=${searchParams.q}&id=${searchParams.id}&page=${parseInt(resData.page) + 1}`}> <button style={{ padding: '.5rem 1.5rem' }}>Next</button></Link> : ""}
+            </div>
         </div>
     )
 }
