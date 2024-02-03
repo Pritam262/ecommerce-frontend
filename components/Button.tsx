@@ -1,5 +1,8 @@
 "use client"
-export default function Button(props: any) {
+
+import { useRouter } from "next/navigation";
+
+export  function CartButton(props: any) {
 
     const CartProduct = {
         id: props.id,
@@ -49,6 +52,17 @@ export default function Button(props: any) {
     getLocalStorageData();
 
     return (
-        <div style={{ margin: "15px", cursor: "pointer", border: " 1px solid #000", width: "max-content", padding: " .5rem 1.5rem" }} onClick={() => cartProduct(props.id, "")}>Cart</div>
+        <div style={{ margin: "15px 0 0 15px", cursor: "pointer", border: " 1px solid #000", width: "max-content", padding: " .5rem 1.5rem" }} onClick={() => cartProduct(props.id, "")}>Cart</div>
     )
+}
+
+export function BuyButton (props:any){
+ 
+    const router = useRouter();
+
+    // <div style={{ margin: "15px 0 0 15px", cursor: "pointer", border: " 1px solid #000", width: "max-content", padding: " .5rem 1.5rem" }} onClick={ ()=>router.push(`/buy?id=${id.id}`) }>Buy</div>
+        return (
+            <div style={{ margin: "15px 0 0 15px", cursor: "pointer", border: " 1px solid #000", width: "max-content", padding: " .5rem 1.5rem" }} onClick={ ()=> console.log(`Buy product ${props.id}, type ${props.type}`) }>Buy</div>
+        )
+   
 }

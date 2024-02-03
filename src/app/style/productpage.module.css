@@ -13,7 +13,7 @@
 
 .productComponent{
     width: 100%;
-    height: 100vh;
+    height: max-content;
     display: flex;
     margin-top: 50px;
 }
@@ -34,6 +34,30 @@
 }
 .price{
     font-size: 20px;
+    /* background-color: #717171; */
+}
+
+.page div .brands{
+    font-size: 12px;
+    background-color: #525252;
+    color: #fff;
+    padding: .5rem 1rem .5rem .5rem;
+    margin-right: 15px;
+    position: relative;
+}
+
+.page div .brands::after{
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 130%;
+    background-color: rgb(255, 255, 255);
+    top: 0;
+    right: 0;
+    transform: translate(36%, -10%);
+    rotate: 35deg;
+    
+
 }
 
 
@@ -41,5 +65,33 @@
 .buyOption{
     width: 20%;
     height: auto;
-    background-color: chocolate;
+    /* background-color: chocolate; */
+}
+
+.buyOption .exchangeContainer{
+    width: 100%;
+    min-height: 20%;
+    max-height: max-content;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #dadada;
+}
+
+.buyOption .exchangeContainer .exchageOptionContainer{
+    /* background-color: #dadada; */
+    padding: 1rem;
+    /* color: black; */
+
+}
+.buyOption .exchangeContainer .notActive{
+    background-color: #f4f4f4;
+}
+.buyOption .exchangeContainer .exchageOptionContainer .btn{
+width: 100%;
+padding: .2rem 1.2rem;
+border: 1px solid #dadada;
+margin: 20px 0 20px 0;
+}
+
+.buyOption .option{
+    display: flex;
 }

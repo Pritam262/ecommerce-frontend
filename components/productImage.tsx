@@ -1,16 +1,13 @@
 "use client"
 
 import Styles from "@/app/style/productcomponent.module.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export default function ProductImage(props: any) {
     // console.log("Props", props)
     const [image, setImage] = useState<string>(`${props.images[0].imageUrl}`);
     // console.log("Images", images);
 
-    useEffect(()=>{
-        setImage(props.images[0].imageUrl);
-    },[])
 
 
     return (

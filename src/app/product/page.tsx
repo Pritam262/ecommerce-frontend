@@ -1,10 +1,11 @@
 
 import { Metadata } from "next";
 import Link from "next/link";
-import Button from "../../../components/cartBtn";
+import { CartButton, BuyButton } from "../../../components/Button";
 import ProductImage from "../../../components/productImage";
 import Styles from "@/app/style/productpage.module.css";
 import Navbar from "../../../components/navbar";
+import ExchangeComponent from "../../../components/productexchange";
 
 export async function generateMetadata({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }): Promise<Metadata> {
     // read route params
@@ -29,7 +30,6 @@ export default async function productPage({ params, searchParams }: { params: { 
 
     const data = resData.product;
 
-
     if (typeof window !== "undefined") {
 
         window.localStorage.setItem('product', data);
@@ -37,39 +37,58 @@ export default async function productPage({ params, searchParams }: { params: { 
 
     return (
         <>
-        {/* <Navbar/> */}
-        <div className={Styles.page}>
+            {/* <Navbar/> */}
+            <div className={Styles.page}>
 
-            <div className={Styles.productComponent}>
+                <div className={Styles.productComponent}>
 
-                {data && (<ProductImage images={data?.images} />)}
+                    {data && (<ProductImage images={data?.images} />)}
 
-                <div className={Styles.productDetails}>
+                    <div className={Styles.productDetails}>
 
-                <p className={Styles.title}>{data?.title}</p>
-                <Link href={data?.seller.id} className={Styles.link}>Visit the {data?.seller.sellername} store</Link>
-                <p>{data?.description}</p>
-                <p className={Styles.price}>{data?.price}</p>
+                        <p className={Styles.title}>{data?.title}</p>
+                        <Link href={data?.seller.id} className={Styles.link}>Visit the {data?.seller.sellername} store</Link>
+                        <p>{data?.description}</p>
+                        <p className={Styles.price}>{data?.price}</p>
 
-                <div className={Styles.colorOption}>
+                        <div className={Styles.colorOption}>
 
-                <p>Colour: {data?.color}</p>
-                </div>
-
-                </div>
-
-
-                <div className={Styles.buyOption}>
-                    <span><input type="radio" name="type" id="" value="exchange" /> With Exchnage</span>
-                    <span><input type="radio" name="type" id="" value="withoutexchange" defaultChecked/> Without Exchange</span>
-
-                    <div>
-                <Button id={String(data?.id)} title={data?.title} />
+                            <p>Colour: {data?.technicaldetails[0].color}</p>
+                        </div>
 
                     </div>
+
+
+                    <div className={Styles.buyOption}>
+
+                        <ExchangeComponent price={data?.price} />
+
+                        <div className={Styles.option}>
+                            <CartButton id={String(data?.id)} title={data?.title} />
+                            <BuyButton id={String(data?.id)} type={'single'} />
+
+                        </div>
+                    </div>
+
                 </div>
+
+                <div style={{display:'flex', alignItems:'center'}}><span className={Styles.brands}>Top Brands</span> <p>{data?.seller.sellername}</p></div>
+
+                {data && (
+                    <table>
+                    <tbody>
+                      {data.technicaldetails.map((details:any) => (
+                        Object.entries(details).map(([key, value]) => (
+                          <tr key={key}>
+                            <td>{key}</td>
+                            <td>{value}</td>
+                          </tr>
+                        ))
+                      ))}
+                    </tbody>
+                  </table>
+                )}
             </div>
-        </div>
         </>
     )
 }
