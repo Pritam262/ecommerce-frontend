@@ -13,7 +13,7 @@ export default function LoginPage() {
                 <input type="password" name="password" id="" placeholder='Password' required/>
                 <input type="password" name="conpass" id="" placeholder='Confirm password' required/>
                 <button>Verify mobile number</button>
-                <p>By continuing, you agree to Amazon's <Link href='/'>Contitions of Use</Link> and <Link href='/'>Privacy policy</Link></p>
+                <p>By continuing, you agree to Amazon&apos;s <Link href='/'>Contitions of Use</Link> and <Link href='/'>Privacy policy</Link></p>
             </div>
 
         </div>

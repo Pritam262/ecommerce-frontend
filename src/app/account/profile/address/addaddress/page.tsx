@@ -1,12 +1,12 @@
 'use client'
 
-import { HtmlHTMLAttributes, useEffect, useState } from "react"
+import {useEffect, useState } from "react"
 import { useAppContext } from '@/app/context/appContext';
 import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function addAddress() {
+export default function AddAddress() {
     const router = useRouter();
     const { isLogin } = useAppContext();
 

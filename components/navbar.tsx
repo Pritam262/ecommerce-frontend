@@ -18,14 +18,14 @@ type suggestions = {
     suggestions: Array<suggestionData>;
 }
 export default function Navbar() {
-    const {hostUrl, isLogin, profileData, cartData } = useAppContext();
+    const { hostUrl, isLogin, profileData, cartData } = useAppContext();
     interface IP {
         ip: string;
     }
     const [ip, setIp] = useState<IP>();
 
-    const [suggestions, setSuggestions] = useState<suggestions | null |undefined>();
-    const [prefix, setPrefix] = useState('');
+    const [suggestions, setSuggestions] = useState<suggestions | null | undefined>();
+    const [prefix, setPrefix] = useState(" ");
 
     // const getIpAddress = async () => {
     //     try {
@@ -40,18 +40,18 @@ export default function Navbar() {
     //     }
     // }
 
-    const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
         setPrefix(e.target.value);
         handleSuggestion(e.target.value);
     }
-    const handleSuggestion = async (prefix:String) => {
+    const handleSuggestion = async (prefix: string) => {
         try {
-            
+
             const response = await fetch(`${hostUrl}/api/product/search-suggestions?query=${prefix}`);
             const resData = await response.json();
             setSuggestions(resData);
-        } 
+        }
         catch (error) {
             console.log(error)
         }
@@ -62,7 +62,6 @@ export default function Navbar() {
     useEffect(() => {
         // getIpAddress();
     }, [])
-
     //     const browserName = navigator.appName;
     // const browserVersion = navigator.appVersion;
     // const platform = navigator.platform;
@@ -75,8 +74,8 @@ export default function Navbar() {
                 <div className={Styles.flex}>
                     <GrLocation className={Styles.locIcon} />
                     {/* <FaSearch  className={Styles.icon}/> */}
-                    <div>
-                        {isLogin ? (profileData?.address[0] == null) ? <Link href='/account/profile/address'><p>Kolkata</p> <p>700059</p> </Link> : <Link href='/account/profile/address'> <p> {profileData?.address[0] && profileData?.address[0].city}</p> <p> {profileData?.address[0] && profileData?.address[0].pinCode}</p> </Link> : <> <p>Kolkata </p> <p>700059</p>
+                    <div className={Styles.location}>
+                        {isLogin ? (profileData?.address[0] == null) ? <Link href='/account/profile/address'><p className={Styles.navText}>Kolkata</p> <p className={Styles.navText}>700059</p> </Link> : <Link href='/account/profile/address'> <p className={Styles.navText}> {profileData?.address[0] && profileData?.address[0].city}</p> <p className={Styles.navText}> {profileData?.address[0] && profileData?.address[0].pinCode}</p> </Link> : <> <p className={Styles.navText}>Kolkata </p> <p className={Styles.navText}>700059</p>
                             <p>{ip?.ip}</p>
                         </>
                         }
@@ -90,8 +89,11 @@ export default function Navbar() {
             {/* Center bar */}
 
             <div className={`${Styles.flex} ${Styles.searchSection}`}>
-                <input type="text" name="search" id="" placeholder='Search something' onChange={handleChange}/>
-                <FaSearch className={Styles.searchIcon} onClick={handleSuggestion}/>
+                {/* <input type="text" name="search" id="" placeholder={prefix.length === 1 ? 'Search something' : ''}
+                    value={prefix.length <= 1 ? '' : prefix} onChange={handleChange} /> */}
+
+<input type="text" name="search" id="" placeholder='Search something'  onChange={handleChange} />
+                <FaSearch className={Styles.searchIcon} onClick={handleSuggestion} />
             </div>
 
             {/* Right side */}
@@ -99,22 +101,22 @@ export default function Navbar() {
             <div className={`${Styles.rightNavbar} ${Styles.flex}`}>
 
                 <div className={Styles.flex}>
-                    <Image src='/india.jpg' width={25} height={20} alt='' />
-                    <p style={{ marginLeft: '5px' }}>EN</p>
+                    <Image src='/india.jpg' width={25} height={20} alt=''  className={Styles.flag}/>
+                    <p style={{ marginLeft: '5px' }} className={Styles.navText}>EN</p>
                 </div>
 
 
                 <div className={Styles.account}>
                     {isLogin ? <>  <Link href='/account'>
-                        <span>Hello, <span>{profileData?.fname}</span></span></Link>
-                        <p>Account & Lists</p> </> : <>  <Link href='/login'>
-                            <span>Hello, <span>sign in</span></span></Link>
-                        <p>Account & Lists</p></>}
+                        <span className={Styles.navText}>Hello, <span className={Styles.navText}>{profileData?.fname}</span></span></Link>
+                        <p className={Styles.navText}>Account & Lists</p> </> : <>  <Link href='/login'>
+                            <span className={Styles.navText}>Hello, <span className={Styles.navText}>sign in</span></span></Link>
+                        <p className={Styles.navText}>Account & Lists</p></>}
                 </div>
 
                 <div className={Styles.returnDiv}>
-                    <p>Returns</p>
-                    <p>& Orders</p>
+                    <p className={Styles.navText}>Returns</p>
+                    <p className={Styles.navText}>& Orders</p>
                 </div>
 
                 {isLogin ? <Link href="/account/cart">
@@ -133,13 +135,13 @@ export default function Navbar() {
 
             {/* Search suggestion container */}
 
-            <div className={Styles.searchSuggestion}>
-                {suggestions && suggestions.suggestions.map((item)=>{
-                    return(
+            {suggestions?.suggestions && suggestions.suggestions.length > 0 ? <div className={Styles.searchSuggestion}>
+                {suggestions && suggestions.suggestions.map((item) => {
+                    return (
                         <Link href={`/search?q=${item?.key}&id=${item?.id}&page=1`} key={item?.id}><p>{item?.key}</p></Link>
                     )
                 })}
-            </div>
+            </div> : ""}
         </div>
     )
 }

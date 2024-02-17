@@ -3,9 +3,14 @@
     height: 60vh;
     margin: auto;
     /* background-color: blanchedalmond; */
-    background-blend-mode: multiply;
+    /* background-blend-mode: multiply; */
     position: relative;
-    color:#000;
+    color: #000;
+    background-color: #cacaca;
+}
+
+.titleText {
+    font-size: 20px;
 }
 
 .headerImage {
@@ -44,114 +49,119 @@
 
 
 .offerContainer {
+
     width: 100%;
-    height: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* background-color: #cacaca; */
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-end: initial;
+    row-gap: 15px;
+    column-gap: 15px;
 }
 
-.card {
-    width: calc(100% / 4.2);
+.offerContainer .card {
+    /* width: calc(100% / 4.2); */
+    width: 100%;
     height: 450px;
-    background-color: #fff;
+    /* background-color: #fff; */
+    background-color: #fcfcfc;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     padding: 15px 15px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     position: relative;
+    box-shadow:10px 10px  #f0f0f09e ;
 }
-.card a{
-    position: absolute;
+.card .titleText{
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.card .cardContainer{
+    height: 70%;
+}
+
+.card .smallCard {
+    height: 90%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5px;
+    row-gap: 5px;
+}
+
+.smallCard .smallCardItem {
+    width: 100%;
+    height: 100%;
+}
+
+.smallCard img {
+    width: 100%;
+    height: calc(100% - 20px);
+    background-size: cover;
+}
+
+.smallCard .smallCardItem p{
+    font-size: 15px;
+}
+
+
+.card a {
+    /* position: absolute;
     margin-left: 15px;
     left: 0;
     bottom: 5%;
-    transform: translate(0, 5%);
-    /* background-color: bisque; */
+    transform: translate(0, 5%); */
     color: rgb(0, 121, 164);
     font-size: 13px;
 }
-.minCard{
-    /* width: 90%; */
-    width: 100%;
-    height: 75%;
-    margin: 15px auto 0 auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* background-color: bisque; */
-}
 
-.minCard .cardItem{
-
-    width: 98%;
-    height: 96%;
-    background-color: #fff;
-    /* border: 1px solid red; */
-    margin: 0 auto 0 auto;
-}
-.minCard .cardItem p{
-    font-size: 12px;
-}
-
-.cardItemImage{
-    width: 100%;
-    height: 80%;
-    background-size: cover;
-}
-.minCard .cardItem:nth-child(odd){
-    margin-right: 2.5px;
-}
-.minCard .cardItem:nth-child(even) {
-    margin-left: 2.5px;
-}
-/* .minCard .cardItem:nth-child(2){
-    margin-left: 2.5px;
-} */
 
 
 .flexOffer {
-    /* width: 100%;
-    height: 280px;
-    background-color: #cacaca;
-    padding:0  15px 15px 15px; */
     width: 100%;
-    /* height: 280px; */
     height: 350px;
-    /* background-color: #cacaca; */
     background-color: #fff;
     padding: 0 15px 15px 15px;
-    overflow: hidden; /* To hide overflow images */
+    overflow: hidden;
+    /* To hide overflow images */
     position: relative;
 }
 
-.flexOfferBox{
+.flexOfferBox {
     width: 100%;
     height: calc(100% - 15px);
     display: flex;
     align-items: center;
-    overflow-x: auto; /* Enable horizontal scrolling */
-    scroll-behavior: smooth; /* Smooth scrolling */
+    overflow-x: auto;
+    /* Enable horizontal scrolling */
+    scroll-behavior: smooth;
+    /* Smooth scrolling */
 }
-.flexImage{
-    flex: 0 0 calc(100% / 6); /* Set width for 6 images per slide */
+
+.flexImage {
+    flex: 0 0 calc(100% / 6);
+    /* Set width for 6 images per slide */
     height: 100%;
     background-color: #f3f3f3;
     /* border: 1px solid red; */
-    box-sizing: border-box; /* Include borders in width calculations */
+    box-sizing: border-box;
+    /* Include borders in width calculations */
 }
-.flexImage img{
+
+.flexImage img {
     width: 100%;
     height: 60%;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-  
-  .flexImage:not(:last-child) {
-    margin-right: 10px; /* Adjust spacing between images */
-  }
-.prevDiv{
+
+.flexImage:not(:last-child) {
+    margin-right: 10px;
+}
+
+.prevDiv {
     width: 60px;
     height: 100px;
     display: flex;
@@ -165,7 +175,7 @@
     z-index: 10;
 }
 
-.nextDiv{
+.nextDiv {
     width: 60px;
     height: 100px;
     display: flex;
@@ -179,3 +189,65 @@
     z-index: 10;
 }
 
+@media screen and (max-width:650px) {
+    .header {
+        width: 100%;
+        height: 40vh;
+    }
+
+    .container {
+        width: 100%;
+        /* height: 100vh; */
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%, 5%);
+        /* background-color: rgb(226, 192, 43); */
+    }
+
+
+    .offerContainer {
+        width: 100%;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 5px;
+    }
+
+   .offerContainer .card {
+        padding: 5px;
+        height: calc(100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: none;
+    }
+    .card .cardContainer{
+        height: 80%;
+    }
+
+    .card .smallCard {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+    .smallCard .smallCardItem {
+        width: 100%;
+        height: 100%;
+    }
+
+    .smallCard img {
+        width: 100%;
+        height: calc(100% - 15px);
+        background-size: cover;
+    }
+
+    .smallCard .smallCardItem p{
+        font-size: 8px;
+    }
+
+
+
+   .card  .titleText {
+        font-size: 10px;
+    }
+}

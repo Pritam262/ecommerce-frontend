@@ -42,10 +42,10 @@ export default async function searchProducts({ searchParams }: { searchParams: {
                 {/* <p>Search query: {searchParams?.q} and id: {searchParams?.id}</p> */}
                 {(response.status === 200) ? <> {resData && resData.products.map((item: any) => {
                     return (
-                        <Link href={`/product?q=${item?.title}&id=${item?.id}`}>
-                            <div key={item?.id} className={Styles.card}>
+                        <Link href={`/product?q=${item?.title}&id=${item?.id}`} key={item?.id}>
+                            <div  className={Styles.card}>
 
-                                <Image src={item?.imageUrl} className={Styles.image} width={150} height={200} alt='' />
+                                <img src={item?.imageUrl} className={Styles.image} width={150} height={200} alt='' />
 
                                 <div className={Styles.proDetails}>
                                     <p className={Styles.title}>{item?.title}</p>

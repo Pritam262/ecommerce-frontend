@@ -54,7 +54,7 @@ export default function LoginPage() {
                 <input type="password" name="password" id="password" placeholder='Password' onChange={handleChange} value={credencials.password} />
                 <button onClick={handleLogin}>Login</button>
                 <p style={{ fontSize: '12px', 'color': 'red', }}>{errorText?`*${errorText}`:''}</p>
-                <p>By continuing, you agree to Amazon's <Link href='/'>Contitions of Use</Link> and <Link href='/'>Privacy policy</Link></p>
+                <p>By continuing, you agree to Amazon&apos;s <Link href='/'>Contitions of Use</Link> and <Link href='/'>Privacy policy</Link></p>
             </div>
 
             <p className={Styles.hrText}>New to Amazon?</p>

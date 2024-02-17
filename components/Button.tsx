@@ -33,23 +33,23 @@ export  function CartButton(props: any) {
         }
     }
 
-    const getLocalStorageData = () => {
+    // const getLocalStorageData = () => {
 
-        try {
+    //     try {
 
-            const getLocalStorageData = localStorage.getItem('cart-product');
+    //         const getLocalStorageData = localStorage.getItem('cart-product');
 
-            if (getLocalStorageData != null) {
+    //         if (getLocalStorageData != null) {
 
-                // console.log("Get localStorage data", JSON.parse(getLocalStorageData));
-            }
-        } catch (error) {
-            console.log(error)
-        }
+    //             // console.log("Get localStorage data", JSON.parse(getLocalStorageData));
+    //         }
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
 
-    }
+    // }
 
-    getLocalStorageData();
+    // getLocalStorageData();
 
     return (
         <div style={{ margin: "15px 0 0 15px", cursor: "pointer", border: " 1px solid #000", width: "max-content", padding: " .5rem 1.5rem" }} onClick={() => cartProduct(props.id, "")}>Cart</div>

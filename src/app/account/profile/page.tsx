@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState } from "react";
+
 import { useAppContext } from "@/app/context/appContext";
 import Styles from '@/app/style/account.module.css';
-import { MdOutlineDelete } from "react-icons/md";
+// import { MdOutlineDelete } from "react-icons/md"; 
 import { FaEdit } from "react-icons/fa";
 
 export default function Profile() {

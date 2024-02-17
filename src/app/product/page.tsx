@@ -6,6 +6,7 @@ import ProductImage from "../../../components/productImage";
 import Styles from "@/app/style/productpage.module.css";
 import Navbar from "../../../components/navbar";
 import ExchangeComponent from "../../../components/productexchange";
+import React from "react";
 
 export async function generateMetadata({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }): Promise<Metadata> {
     // read route params
@@ -47,13 +48,21 @@ export default async function productPage({ params, searchParams }: { params: { 
                     <div className={Styles.productDetails}>
 
                         <p className={Styles.title}>{data?.title}</p>
-                        <Link href={data?.seller.id} className={Styles.link}>Visit the {data?.seller.sellername} store</Link>
-                        <p>{data?.description}</p>
+                        <Link href={`/seller?q=${data?.seller.id}`} className={Styles.link}>Visit the {data?.seller.sellername} store</Link>
+                        {/* <p>{data?.description}</p> */}
+                        <ul>
+
+                        {data?.description && data?.description.map((item:any, index:number)=>{
+                            return(
+                                <li key={index}>{item}</li>
+                                )
+                        })}
+                        </ul>
                         <p className={Styles.price}>{data?.price}</p>
 
                         <div className={Styles.colorOption}>
 
-                            <p>Colour: {data?.technicaldetails[0].color}</p>
+                            <p>Colour: {data?.technicaldetails && data?.technicaldetails[0].color}</p>
                         </div>
 
                     </div>
@@ -77,11 +86,11 @@ export default async function productPage({ params, searchParams }: { params: { 
                 {data && (
                     <table>
                     <tbody>
-                      {data.technicaldetails.map((details:any) => (
+                      {data .technicaldetails && data.technicaldetails.map((details:any) => (
                         Object.entries(details).map(([key, value]) => (
                           <tr key={key}>
                             <td>{key}</td>
-                            <td>{value}</td>
+                            <td>{value as React.ReactNode}</td>
                           </tr>
                         ))
                       ))}

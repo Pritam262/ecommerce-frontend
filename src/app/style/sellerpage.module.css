@@ -1,0 +1,77 @@
+.page{
+    width: 100vw;
+    /* min-height: 100vh; */
+    height: fit-content;
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: hidden;
+}
+.page .container{
+    width: 80vw;
+    height: max-content;
+
+}
+
+.page .container .header{
+    width: 100%;
+    height: 20vh;
+    border: 1px solid blue;
+}
+
+.page .container .header img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.page .navigationOption{
+    width: 80vw;
+    height: 5vh;
+    /* background-color: blue; */
+}
+
+.page .banner{
+    width: 100%;
+    height: 45vh;
+    /* height: 350px; */
+    border: 1px solid red;
+    /* background-color: brown; */
+    margin: 5px 5px 0 0;
+}
+.page .banner .bannerItem{
+    width: 100%;
+    height: 100%;
+    /* height: 350px; */
+    /* height: calc(width); */
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.page .grid{
+display: flex;
+justify-content: space-between;
+margin: 5px 0 5px 0;
+object-fit: cover;
+object-position: center;
+border: 1px solid red;
+}
+/* .page .grid:not(:last-child){
+    margin-top: 15px;
+} */
+
+.page .gridItem{
+    width: 50%;
+ height: calc(100%);
+}
+
+
+@media screen and (max-width:600px) {
+    .page .container{
+        width: 100%;
+    }
+}

@@ -1,15 +1,12 @@
 'use client'
 import { useAppContext } from "@/app/context/appContext";
 import Styles from '@/app/style/account.module.css';
-import { MdOutlineDelete } from "react-icons/md";
-import { FaEdit } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import {useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function Address() {
     const { isLogin, profileData, deleteAddress } = useAppContext();
-    const [ismodelHidden, setIsModelHidden] = useState(false);
     const router = useRouter();
     const editAddress = (user: string, id: string, index: number) => {
         console.log(`Update address : ${id} index: ${index} by ${user}`);

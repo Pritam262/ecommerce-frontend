@@ -16,7 +16,7 @@ export default function ProductImage(props: any) {
             <div className={Styles.navigateImageContainer}>
                 {props.images && props.images.map((item: any) => {
                     return (
-                        <img src={`${item?.imageUrl}`} alt="" className={Styles.navImage} key={item?.id} loading="lazy" onClick={(e)=> setImage(e.target.src)}  onMouseOver={(e)=> setImage(e.target.src)}/>
+                        <img src={`${item?.imageUrl}`} alt="" className={Styles.navImage} key={item?.id} loading="lazy" onClick={(e:React.MouseEvent<HTMLImageElement>)=> setImage((e.currentTarget as HTMLImageElement).src)}  onMouseOver={(e:React.MouseEvent<HTMLImageElement>)=> setImage((e.currentTarget as HTMLImageElement).src)}/>
                     )
                 })}
 

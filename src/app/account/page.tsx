@@ -1,7 +1,22 @@
+"use client"
 import Image from "next/image";
 import Styles from '@/app/style/account.module.css';
 import Link from "next/link";
+import { useAppContext } from "../context/appContext";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 export default function Profile(){
+    const {isLogin} = useAppContext();
+    const router = useRouter();
+    useEffect(() => {
+
+        if (!isLogin) {
+            router.push('/login')
+        }
+        else {
+            router.push('/account');
+        }
+    }, [isLogin])
     return (
         <div className={Styles.main}>
             <div className={Styles.container}>
