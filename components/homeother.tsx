@@ -2,7 +2,17 @@ import Styles from '@/app/style/homeheader.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { GrPrevious, GrNext } from "react-icons/gr";
+import FlexOfferCarousel from './FlexOfferCarousel';
 export default function Homeother() {
+
+    const handlePreview = ()=>{
+
+        console.log("Preview btn click");
+    }
+
+    const handleNext =()=>{
+        console.log("Next btn click");
+    }
     return (
         <div className={Styles.container}>
             <div className={Styles.offerContainer}>
@@ -217,179 +227,76 @@ export default function Homeother() {
 
 
             {/* 3rd offer */}
-            <div className={Styles.flexOffer} style={{ marginTop: '10px' }}>
-                <span style={{ display: 'flex' }}><p>Today&apos;s Deals</p> <Link href='/' style={{ marginLeft: "15px" }}>See all deals</Link></span>
-                {/* Prev icon */}
+
+            {/* <div className={Styles.flexOffer}>
+
+                <p>Today&apos;s Deals See all deals</p>
+              
                 <div className={Styles.prevDiv}>
-                    <GrPrevious />
+                    <GrPrevious onClick={handlePreview}/>
                 </div>
-                <div className={Styles.flexOfferBox}>
 
-                    {/* Multiple image slide */}
 
-                    {/* Image 1 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
+                <div className={Styles.itemContainer}>
+
+                    <div className={Styles.itemCard}>
+                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
+                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
                     </div>
 
-                    {/* Image 2 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
+                    <div className={Styles.itemCard}>
+                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
+                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
                     </div>
 
-                    {/* Image 3 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
+                    <div className={Styles.itemCard}>
+                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
+                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
                     </div>
 
-                    {/* Image 4 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
+                    <div className={Styles.itemCard}>
+                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
+                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
                     </div>
 
-                    {/* Image 5 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
+                    <div className={Styles.itemCard}>
+                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
+                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
                     </div>
 
-                    {/* Image 6 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
+                    <div className={Styles.itemCard}>
+                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
+                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
                     </div>
 
-                    {/* Image 7 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
+                    <div className={Styles.itemCard}>
+                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
+                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
                     </div>
 
-                    {/* Image 8 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
+                    <div className={Styles.itemCard}>
+                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
+                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
                     </div>
 
-                    {/* Image 9 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
+                    <div className={Styles.itemCard}>
+                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
+                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
                     </div>
-
-                    {/* Image 10 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
-                    </div>
-
                 </div>
-                {/* Prev icon */}
+
+              
                 <div className={Styles.nextDiv}>
-                    <GrNext />
+                    <GrNext onClick={handleNext}/>
                 </div>
-            </div>
+            </div> */}
+
+            <FlexOfferCarousel/>
+
+
             {/* 4th offer */}
-            <div className={Styles.flexOffer} style={{ marginTop: '10px' }}>
-                <span style={{ display: 'flex' }}><p>Today&apos;s Deals</p> <Link href='/' style={{ marginLeft: "15px" }}>See all deals</Link></span>
-                {/* Prev icon */}
-                <div className={Styles.prevDiv}>
-                    <GrPrevious />
-                </div>
-                <div className={Styles.flexOfferBox}>
+          <FlexOfferCarousel/>
 
-                    {/* Multiple image slide */}
-
-                    {/* Image 1 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
-                    </div>
-
-                    {/* Image 2 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
-                    </div>
-
-                    {/* Image 3 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
-                    </div>
-
-                    {/* Image 4 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
-                    </div>
-
-                    {/* Image 5 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
-                    </div>
-
-                    {/* Image 6 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
-                    </div>
-
-                    {/* Image 7 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
-                    </div>
-
-                    {/* Image 8 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
-                    </div>
-
-                    {/* Image 9 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
-                    </div>
-
-                    {/* Image 10 */}
-                    <div className={Styles.flexImage}>
-                        <Image src='/boat.jpg' width={100} height={100} alt='' priority />
-                        <span><span>Up to 79% off</span><p>Deals of the day</p></span>
-                        <p>Made for Amazon - Most loved Fashion</p>
-                    </div>
-
-                </div>
-                {/* Prev icon */}
-                <div className={Styles.nextDiv}>
-                    <GrNext />
-                </div>
-            </div>
         </div>
     )
 }
