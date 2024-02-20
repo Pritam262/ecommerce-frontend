@@ -19,6 +19,9 @@
 .leftSection {
     margin-left: 15px;
 }
+.leftSection .humbergur{
+    display: none;
+}
 
 .locIcon {
     font-size: 20px;
@@ -113,6 +116,9 @@
     }
     .leftSection{
         margin-left: 5px;
+    }
+    .leftSection .humbergur{
+        display: block;
     }
     .logo {
         font-size: 12px;

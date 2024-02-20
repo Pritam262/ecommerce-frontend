@@ -3,7 +3,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import Styles from '@/app/style/homeheader.module.css'; 
 
-const Carousel = () => {
+
+const Carousel = (props:any) => {
     const [itemsToShow, setItemsToShow] = useState(3); // Initial number of items to show
     const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -57,12 +58,24 @@ const Carousel = () => {
                 <GrPrevious />
             </div>
             <div className={Styles.itemContainer} ref={container}>
-                {Array.from({ length: 19 }).map((_, index) => (
+                {/* {Array.from({ length: 19 }).map((_, index) => (
                     <div key={index} className={Styles.itemCard}>
                         <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
                         <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fashion {index + 1}</p>
                     </div>
-                ))}
+                ))} */}
+                {props.data && props.data.map((item:any,index:number)=>{
+                    return (
+                        <div key={index} className={Styles.itemCard}>
+                            <div className={Styles.imageDiv}>
+
+                        <img src={item.imageUrl} width={150} height={150} alt='' loading='lazy' />
+                            </div>
+                        <p>{item.title}</p>
+                        <p>{item.desc} {index+1}</p>
+                    </div>
+                    )
+                })}
             </div>
             <div className={Styles.nextDiv} onClick={handleNext}>
                 <GrNext  />

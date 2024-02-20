@@ -5,14 +5,113 @@ import { GrPrevious, GrNext } from "react-icons/gr";
 import FlexOfferCarousel from './FlexOfferCarousel';
 export default function Homeother() {
 
-    const handlePreview = ()=>{
-
-        console.log("Preview btn click");
-    }
-
-    const handleNext =()=>{
-        console.log("Next btn click");
-    }
+    const firstFlexData = [
+        {
+            imageUrl: '/boat.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/boult.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/noise.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/boat.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/boult.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/noise.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/boat.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/boult.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/noise.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/boat.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/boult.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/noise.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/boat.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/boult.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/noise.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/boat.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/boult.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/noise.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/boat.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/boult.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        },
+        {
+            imageUrl: '/noise.jpg',
+            title: 'Up to 79% off Deals of the day',
+            desc: "Made for Amazon - Most loved Fashion"
+        }
+    ]
     return (
         <div className={Styles.container}>
             <div className={Styles.offerContainer}>
@@ -228,74 +327,11 @@ export default function Homeother() {
 
             {/* 3rd offer */}
 
-            {/* <div className={Styles.flexOffer}>
-
-                <p>Today&apos;s Deals See all deals</p>
-              
-                <div className={Styles.prevDiv}>
-                    <GrPrevious onClick={handlePreview}/>
-                </div>
-
-
-                <div className={Styles.itemContainer}>
-
-                    <div className={Styles.itemCard}>
-                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
-                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
-                    </div>
-
-                    <div className={Styles.itemCard}>
-                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
-                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
-                    </div>
-
-                    <div className={Styles.itemCard}>
-                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
-                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
-                    </div>
-
-                    <div className={Styles.itemCard}>
-                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
-                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
-                    </div>
-
-                    <div className={Styles.itemCard}>
-                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
-                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
-                    </div>
-
-                    <div className={Styles.itemCard}>
-                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
-                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
-                    </div>
-
-                    <div className={Styles.itemCard}>
-                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
-                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
-                    </div>
-
-                    <div className={Styles.itemCard}>
-                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
-                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
-                    </div>
-
-                    <div className={Styles.itemCard}>
-                        <img src="/boat.jpg" width={150} height={150} alt='' loading='lazy' />
-                        <p>Up to 79% off Deals of the day Made for Amazon - Most loved Fasion</p>
-                    </div>
-                </div>
-
-              
-                <div className={Styles.nextDiv}>
-                    <GrNext onClick={handleNext}/>
-                </div>
-            </div> */}
-
-            <FlexOfferCarousel/>
+            <FlexOfferCarousel data={firstFlexData}/>
 
 
             {/* 4th offer */}
-          <FlexOfferCarousel/>
+            <FlexOfferCarousel data={firstFlexData}/>
 
         </div>
     )

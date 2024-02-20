@@ -2,7 +2,7 @@
 import React, { InputHTMLAttributes, useEffect, useState } from 'react'
 import Styles from '@/app/style/navbar.module.css';
 import Image from 'next/image';
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaBars } from "react-icons/fa";
 import { GrLocation } from "react-icons/gr";
 import { FiShoppingCart } from "react-icons/fi";
 import Link from 'next/link';
@@ -70,6 +70,7 @@ export default function Navbar() {
     return (
         <div className={Styles.navbar}>
             <div className={`${Styles.leftSection} ${Styles.flex}`}>
+                <FaBars className={Styles.humbergur}/>
                 <div className={Styles.logo}>Ecommerce</div>
                 <div className={Styles.flex}>
                     <GrLocation className={Styles.locIcon} />
@@ -92,7 +93,7 @@ export default function Navbar() {
                 {/* <input type="text" name="search" id="" placeholder={prefix.length === 1 ? 'Search something' : ''}
                     value={prefix.length <= 1 ? '' : prefix} onChange={handleChange} /> */}
 
-<input type="text" name="search" id="" placeholder='Search something'  onChange={handleChange} />
+                <input type="text" name="search" id="" placeholder='Search something' onChange={handleChange} />
                 <FaSearch className={Styles.searchIcon} onClick={handleSuggestion} />
             </div>
 
@@ -101,7 +102,7 @@ export default function Navbar() {
             <div className={`${Styles.rightNavbar} ${Styles.flex}`}>
 
                 <div className={Styles.flex}>
-                    <Image src='/india.jpg' width={25} height={20} alt=''  className={Styles.flag}/>
+                    <Image src='/india.jpg' width={25} height={20} alt='' className={Styles.flag} />
                     <p style={{ marginLeft: '5px' }} className={Styles.navText}>EN</p>
                 </div>
 
