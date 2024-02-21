@@ -1,10 +1,12 @@
 'use client'
 import React, { InputHTMLAttributes, useEffect, useState } from 'react'
-import Styles from '@/app/style/navbar.module.css';
+import gretherStyles from '@/app/style/navbar.module.css';
+import Styles from "@/app/style/smallnavbar.module.css";
 import Image from 'next/image';
 import { FaSearch, FaBars } from "react-icons/fa";
 import { GrLocation } from "react-icons/gr";
 import { FiShoppingCart } from "react-icons/fi";
+import { IoPersonOutline } from "react-icons/io5";
 import Link from 'next/link';
 import { useAppContext } from '@/app/context/appContext';
 
@@ -18,6 +20,7 @@ type suggestions = {
     suggestions: Array<suggestionData>;
 }
 export default function Navbar() {
+    const [screenWidth, setScreenWidth] = useState<number>();
     const { hostUrl, isLogin, profileData, cartData } = useAppContext();
     interface IP {
         ip: string;
@@ -61,6 +64,7 @@ export default function Navbar() {
 
     useEffect(() => {
         // getIpAddress();
+        setScreenWidth(window.innerWidth);
     }, [])
     //     const browserName = navigator.appName;
     // const browserVersion = navigator.appVersion;
@@ -68,82 +72,151 @@ export default function Navbar() {
     // console.log(browserName, browserVersion, platform);
 
     return (
-        <div className={Styles.navbar}>
-            <div className={`${Styles.leftSection} ${Styles.flex}`}>
-                <FaBars className={Styles.humbergur}/>
-                <div className={Styles.logo}>Ecommerce</div>
-                <div className={Styles.flex}>
-                    <GrLocation className={Styles.locIcon} />
-                    {/* <FaSearch  className={Styles.icon}/> */}
-                    <div className={Styles.location}>
-                        {isLogin ? (profileData?.address[0] == null) ? <Link href='/account/profile/address'><p className={Styles.navText}>Kolkata</p> <p className={Styles.navText}>700059</p> </Link> : <Link href='/account/profile/address'> <p className={Styles.navText}> {profileData?.address[0] && profileData?.address[0].city}</p> <p className={Styles.navText}> {profileData?.address[0] && profileData?.address[0].pinCode}</p> </Link> : <> <p className={Styles.navText}>Kolkata </p> <p className={Styles.navText}>700059</p>
-                            <p>{ip?.ip}</p>
-                        </>
-                        }
-                        {/* {isLogin ? <Link href='/account/profile/address'>Update location</Link> : <p>Update location</p>} */}
-                    </div>
-                    <div>
+        <>{screenWidth && screenWidth > 600 ?
+            <div className={gretherStyles.navbar}>
+                <div className={`${gretherStyles.leftSection} ${gretherStyles.flex}`}>
+                    <FaBars className={gretherStyles.humbergur} />
+                    <div className={gretherStyles.logo}>Ecommerce</div>
+                    <div className={gretherStyles.flex}>
+                        <GrLocation className={`${gretherStyles.locIcon} ${gretherStyles.none}`} />
+                        {/* <FaSearch  className={gretherStyles.icon}/> */}
+                        <div className={`${gretherStyles.location} ${gretherStyles.none}`}>
+                            {isLogin ? (profileData?.address[0] == null) ? <Link href='/account/profile/address'><p className={gretherStyles.navText}>Kolkata</p> <p className={gretherStyles.navText}>700059</p> </Link> : <Link href='/account/profile/address'> <p className={gretherStyles.navText}> {profileData?.address[0] && profileData?.address[0].city}</p> <p className={gretherStyles.navText}> {profileData?.address[0] && profileData?.address[0].pinCode}</p> </Link> : <> <p className={gretherStyles.navText}>Kolkata </p> <p className={gretherStyles.navText}>700059</p>
+                                <p>{ip?.ip}</p>
+                            </>
+                            }
+                            {/* {isLogin ? <Link href='/account/profile/address'>Update location</Link> : <p>Update location</p>} */}
+                        </div>
+                        <div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-            {/* Center bar */}
+                {/* Center bar */}
 
-            <div className={`${Styles.flex} ${Styles.searchSection}`}>
-                {/* <input type="text" name="search" id="" placeholder={prefix.length === 1 ? 'Search something' : ''}
+                <div className={`${gretherStyles.flex} ${gretherStyles.searchSection} `}>
+                    {/* <input type="text" name="search" id="" placeholder={prefix.length === 1 ? 'Search something' : ''}
                     value={prefix.length <= 1 ? '' : prefix} onChange={handleChange} /> */}
 
-                <input type="text" name="search" id="" placeholder='Search something' onChange={handleChange} />
-                <FaSearch className={Styles.searchIcon} onClick={handleSuggestion} />
-            </div>
-
-            {/* Right side */}
-
-            <div className={`${Styles.rightNavbar} ${Styles.flex}`}>
-
-                <div className={Styles.flex}>
-                    <Image src='/india.jpg' width={25} height={20} alt='' className={Styles.flag} />
-                    <p style={{ marginLeft: '5px' }} className={Styles.navText}>EN</p>
+                    <input type="text" name="search" id="" placeholder='Search something' onChange={handleChange} />
+                    <FaSearch className={gretherStyles.searchIcon} onClick={handleSuggestion} />
                 </div>
 
+                {/* Right side */}
 
-                <div className={Styles.account}>
-                    {isLogin ? <>  <Link href='/account'>
-                        <span className={Styles.navText}>Hello, <span className={Styles.navText}>{profileData?.fname}</span></span></Link>
-                        <p className={Styles.navText}>Account & Lists</p> </> : <>  <Link href='/login'>
-                            <span className={Styles.navText}>Hello, <span className={Styles.navText}>sign in</span></span></Link>
-                        <p className={Styles.navText}>Account & Lists</p></>}
-                </div>
+                <div className={`${gretherStyles.rightNavbar} ${gretherStyles.flex}`}>
 
-                <div className={Styles.returnDiv}>
-                    <p className={Styles.navText}>Returns</p>
-                    <p className={Styles.navText}>& Orders</p>
-                </div>
-
-                {isLogin ? <Link href="/account/cart">
-                    <div className={Styles.cartItem}>
-                        <FiShoppingCart className={Styles.cartIcon} />
-                        {(cartData?.totalLength === 0) ? " " : <p className={Styles.cartNum}>{cartData?.totalLength}</p>}
+                    <div className={`${gretherStyles.flex} ${gretherStyles.none}`}>
+                        <Image src='/india.jpg' width={25} height={20} alt='' className={gretherStyles.flag} />
+                        <p style={{ marginLeft: '5px' }} className={gretherStyles.navText}>EN</p>
                     </div>
-                </Link> : <Link href="/login">
-                    <div className={Styles.cartItem}>
-                        <FiShoppingCart className={Styles.cartIcon} />
+
+
+                    <div className={gretherStyles.account}>
+                        {isLogin ? <>  <Link href='/account'>
+                            <span className={`${gretherStyles.navText} ${gretherStyles.none}`}>Hello, <span className={gretherStyles.navText}>{profileData?.fname}</span></span></Link>
+                            <p className={`${gretherStyles.navText} ${gretherStyles.none}`}>Account & Lists</p> <IoPersonOutline className={gretherStyles.personIcon} /> </> : <>  <Link href='/login'>
+                                <span className={gretherStyles.navText}>Hello, <span className={gretherStyles.navText}>sign in</span></span></Link>
+                            <p className={gretherStyles.navText}>Account & Lists</p></>}
                     </div>
-                </Link>}
 
-            </div>
+                    <div className={gretherStyles.returnDiv}>
+                        <p className={gretherStyles.navText}>Returns</p>
+                        <p className={gretherStyles.navText}>& Orders</p>
+                    </div>
+
+                    {isLogin ? <Link href="/account/cart">
+                        <div className={gretherStyles.cartItem}>
+                            <FiShoppingCart className={gretherStyles.cartIcon} />
+                            {(cartData?.totalLength === 0) ? " " : <p className={gretherStyles.cartNum}>{cartData?.totalLength}</p>}
+                        </div>
+                    </Link> : <Link href="/login">
+                        <div className={gretherStyles.cartItem}>
+                            <FiShoppingCart className={gretherStyles.cartIcon} />
+                        </div>
+                    </Link>}
+
+                </div>
 
 
-            {/* Search suggestion container */}
+                {/* Search suggestion container */}
 
-            {suggestions?.suggestions && suggestions.suggestions.length > 0 ? <div className={Styles.searchSuggestion}>
-                {suggestions && suggestions.suggestions.map((item) => {
-                    return (
-                        <Link href={`/search?q=${item?.key}&id=${item?.id}&page=1`} key={item?.id}><p>{item?.key}</p></Link>
-                    )
-                })}
-            </div> : ""}
-        </div>
+                {suggestions?.suggestions && suggestions.suggestions.length > 0 ? <div className={gretherStyles.searchSuggestion}>
+                    {suggestions && suggestions.suggestions.map((item) => {
+                        return (
+                            <Link href={`/search?q=${item?.key}&id=${item?.id}&page=1`} key={item?.id}><p>{item?.key}</p></Link>
+                        )
+                    })}
+                </div> : ""}
+            </div> : <div className={Styles.navbar}>
+
+                <div className={Styles.topBar}>
+
+                    <div className={Styles.leftSection}>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+
+                            <FaBars className={Styles.humbergur} />
+                            <div className={Styles.logo}>Ecommerce</div>
+                        </div>
+
+                    </div>
+
+                    <div style={{ display: 'flex' }}>
+                        <Link href="/register">Sign In &gt; </Link>
+                        {isLogin ? <Link href="/account/cart">
+                            <div className={Styles.cartItem}>
+                                <FiShoppingCart className={Styles.cartIcon} />
+                                {(cartData?.totalLength === 0) ? " " : <p className={Styles.cartNum}>{cartData?.totalLength}</p>}
+                            </div>
+                        </Link>
+
+                            : <Link href="/login">
+                                <div className={Styles.cartItem}>
+                                    <FiShoppingCart className={Styles.cartIcon} />
+                                </div>
+                            </Link>}
+                    </div>
+                </div>
+                {/* Center bar */}
+
+                <div className={Styles.searchSection}>
+                    {/* <input type="text" name="search" id="" placeholder={prefix.length === 1 ? 'Search something' : ''}
+                    value={prefix.length <= 1 ? '' : prefix} onChange={handleChange} /> */}
+
+                    <input type="text" name="search" id="" placeholder='Search something' onChange={handleChange} className={Styles.searchInput} />
+                    <div className={Styles.searchIconDiv}>
+
+                        <FaSearch className={Styles.searchIcon} onClick={handleSuggestion} />
+                    </div>
+                </div>
+
+                {/* Right side */}
+
+                {/* <div className={`${Styles.rightNavbar} ${Styles.flex}`}>
+
+                    <div className={Styles.account}>
+                        {isLogin ? <>  <Link href='/account'>
+                            <span className={`${Styles.navText} ${Styles.none}`}>Hello, <span className={Styles.navText}>{profileData?.fname}</span></span></Link>
+                            <p className={`${Styles.navText} ${Styles.none}`}>Account & Lists</p> <IoPersonOutline className={Styles.personIcon} /> </> : <>  <Link href='/login'>
+                                <span className={Styles.navText}>Hello, <span className={Styles.navText}>sign in</span></span></Link>
+                            <p className={Styles.navText}>Account & Lists</p></>}
+                    </div>
+
+
+                </div> */}
+
+
+                {/* Search suggestion container */}
+
+                {suggestions?.suggestions && suggestions.suggestions.length > 0 ? <div className={Styles.searchSuggestion}>
+                    {suggestions && suggestions.suggestions.map((item) => {
+                        return (
+                            <Link href={`/search?q=${item?.key}&id=${item?.id}&page=1`} key={item?.id}><p>{item?.key}</p></Link>
+                        )
+                    })}
+                </div> : ""}
+            </div>}
+        </>
     )
 }
 

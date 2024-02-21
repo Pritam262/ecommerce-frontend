@@ -19,7 +19,8 @@
 .leftSection {
     margin-left: 15px;
 }
-.leftSection .humbergur{
+
+.leftSection .humbergur {
     display: none;
 }
 
@@ -110,24 +111,33 @@
 
 
 @media screen and (max-width:600px) {
-    .navbar{
+    .navbar {
         height: auto;
         padding: 5px;
     }
-    .leftSection{
+
+    .leftSection {
         margin-left: 5px;
     }
-    .leftSection .humbergur{
+
+    .leftSection .humbergur {
         display: block;
     }
+
     .logo {
         font-size: 12px;
+        margin-left: 10px;
     }
 
-    .locIcon{
+    /* .locIcon{
     width: 10px;
     margin: 0 5px;
-    }
+    } */
+
+.none{
+    display: none;
+}
+
     .location p {
         font-size: 8px;
         color: blanchedalmond;
@@ -141,10 +151,10 @@
         /* padding: 2px; */
         border-radius: 0;
     }
-    
+
     .searchSection input {
         width: 100%;
-        padding:1px 3px;
+        padding: 1px 3px;
         color: #000;
         font-size: 8px;
         background-color: #fff;
@@ -152,7 +162,7 @@
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
     }
-    
+
     .searchIcon {
         font-size: 12px;
         margin: 0 2px;
@@ -164,17 +174,20 @@
         height: auto;
     }
 
-    .navText {
+    .account .navText {
         font-size: 8px;
+        /* display: none; */
     }
 
     .returnDiv {
         display: none;
     }
-    .rightNavbar{
+
+    .rightNavbar {
         margin-right: 5px;
     }
-    .cartIcon{
+
+    .cartIcon {
         width: 12px;
     }
 
@@ -205,5 +218,5 @@
         font-size: 8px;
     }
 
-    
+
 }

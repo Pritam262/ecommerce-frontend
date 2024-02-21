@@ -302,7 +302,7 @@
         height: 350px;
         background-color: #fff;
         padding: 0 15px 15px 15px;
-        /* overflow: hidden; */
+        overflow: hidden;
         /* To hide overflow images */
         position: relative;
     }
@@ -311,6 +311,7 @@
         width: 100%;
         height: calc(100%);
         display: flex;
+        overflow-y: hidden;
         overflow-x: auto;
         scroll-behavior: smooth;
         /* background-color: brown; */
