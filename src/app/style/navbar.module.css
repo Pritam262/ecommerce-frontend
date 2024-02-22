@@ -107,6 +107,9 @@
     color: #000;
 
 }
+.rightNavbar .personIcon{
+    display: none;
+}
 
 
 
@@ -207,6 +210,10 @@
         right: 0;
         transform: translate(-0%, -100%);
         font-size: 8px;
+    }
+
+    .rightNavbar .personIcon{
+        display: block;
     }
 }
 

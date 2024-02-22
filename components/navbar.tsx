@@ -20,7 +20,7 @@ type suggestions = {
     suggestions: Array<suggestionData>;
 }
 export default function Navbar() {
-    const [screenWidth, setScreenWidth] = useState<number>();
+    const [screenWidth, setScreenWidth] = useState<number>(1200);
     const { hostUrl, isLogin, profileData, cartData } = useAppContext();
     interface IP {
         ip: string;
