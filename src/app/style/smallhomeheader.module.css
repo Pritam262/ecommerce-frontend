@@ -1,0 +1,50 @@
+.header {
+    width: 100%;
+    height: 40vh;
+}
+
+.header .headerImage {
+    width: 100%;
+    height: 100%;
+    /* aspect-ratio: attr(width) / attr(height); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+}
+
+.addBanner{
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.banner {
+    /* width: 100%; */
+    /* height: 150%; */
+    width: 100vw;
+    height: 50px;
+    margin: 5px 0 5px 0;
+}
+
+
+.addContainer {
+    width: 100vw;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.addContainer .addImage {
+    margin: auto;
+}
+
+.addContainer .addFlexContainer{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+}
+

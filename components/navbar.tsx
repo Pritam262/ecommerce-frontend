@@ -152,17 +152,16 @@ export default function Navbar() {
 
                 <div className={Styles.topBar}>
 
-                    <div className={Styles.leftSection}>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
 
                             <FaBars className={Styles.humbergur} />
                             <div className={Styles.logo}>Ecommerce</div>
                         </div>
 
-                    </div>
+             
 
-                    <div style={{ display: 'flex' }}>
-                        <Link href="/register">Sign In &gt; </Link>
+                    <div className={Styles.rightNavbar} >
+                       { isLogin ? <IoPersonOutline />: <Link href="/login">Sign In &gt; </Link>}
                         {isLogin ? <Link href="/account/cart">
                             <div className={Styles.cartItem}>
                                 <FiShoppingCart className={Styles.cartIcon} />

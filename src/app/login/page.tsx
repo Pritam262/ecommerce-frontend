@@ -6,20 +6,26 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
+    const { setIsLogin,hostUrl } = useAppContext();
 
     const router = useRouter();
     const [credencials, setCredencials] = useState({ email: '', password: '' });
     const [errorText, seterrorText] = useState('');
     // let errorText = '';
 
-    const { setIsLogin } = useAppContext();
+
+    // console.log(hostUrl);
+
+    // const hostUrl = 'http://192.168.50.14';
+
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setCredencials({ ...credencials, [name]: value });
     }
 
     const handleLogin = async () => {
-        const response = await fetch('http://127.0.0.1:3000/api/auth/login', {
+        const response = await fetch(`${hostUrl}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

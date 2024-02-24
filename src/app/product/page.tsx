@@ -9,9 +9,11 @@ import ExchangeComponent from "../../../components/productexchange";
 import React from "react";
 
 export async function generateMetadata({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }): Promise<Metadata> {
+
+    const hostUrl = process.env.SERVER_IP;
     // read route params
     // const id = searchParams.q;
-    const url = `http://127.0.0.1:3000/api/product/getproduct?productid=${searchParams?.id}`;
+    const url = `${hostUrl}/api/product/getproduct?productid=${searchParams?.id}`;
 
     // fetch data
     const response = await fetch(url).then((res) => res.json());
@@ -26,7 +28,9 @@ export async function generateMetadata({ searchParams }: { searchParams: { [key:
 
 export default async function productPage({ params, searchParams }: { params: { slug: string }; searchParams: { q: string; id: string } }) {
 
-    const response = await fetch(`http://127.0.0.1:3000/api/product/getproduct?productid=${searchParams?.id}&query=${searchParams?.q}`, { cache: 'no-cache' });
+    const hostUrl = process.env.SERVER_IP;
+
+    const response = await fetch(`${hostUrl}/api/product/getproduct?productid=${searchParams?.id}&query=${searchParams?.q}`, { cache: 'no-cache' });
     const resData = await response.json();
 
     const data = resData.product;

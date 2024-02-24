@@ -7,6 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddAddress() {
+
+    const hostUrl = process.env.SERVER_IP;
     const router = useRouter();
     const { isLogin } = useAppContext();
 
@@ -17,7 +19,7 @@ export default function AddAddress() {
     }
 
     const addAddress = async () => {
-        const response = await fetch('http://127.0.0.1:3000/api/auth/addaddress', {
+        const response = await fetch(`${hostUrl}/api/auth/addaddress`, {
             method: "post",
             headers: {
                 'Content-Type':'application/json',

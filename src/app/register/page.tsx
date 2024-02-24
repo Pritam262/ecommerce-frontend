@@ -15,7 +15,7 @@ export default function LoginPage() {
                 <button>Verify mobile number</button>
                 <p>By continuing, you agree to Amazon&apos;s <Link href='/'>Contitions of Use</Link> and <Link href='/'>Privacy policy</Link></p>
             </div>
-
+            <Link href='/register'><button className={Styles.signUpBtn}>Create your Amazon Account</button></Link>
         </div>
     )
 }

@@ -2,7 +2,9 @@ import Styles from "@/app/style/sellerpage.module.css";
 import Image from "next/image";
 export default async function AllSellerProduct({ params, searchParams }: { params: { slug: string }; searchParams: { q: string; id: string } }) {
 
-    const response = await fetch(`http://127.0.0.1:3000/api/seller/getimages?userid=${searchParams.q}`);
+    const hostUrl = process.env.SERVER_IP;
+
+    const response = await fetch(`${hostUrl}/api/seller/getimages?userid=${searchParams.q}`);
     const resData = await response.json();
     const data = resData.success;
 

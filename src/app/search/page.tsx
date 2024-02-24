@@ -31,8 +31,8 @@ export default async function searchProducts({ searchParams }: { searchParams: {
     //     return resData;
     // }
     // fetchSearchProducts(1);
-
-    const response = await fetch(`http://127.0.0.1:3000/api/product/searchproducts?query=${searchParams.q}&page=${searchParams.page}`, { cache: 'no-cache' });
+    const hostUrl = process.env.SERVER_IP;
+    const response = await fetch(`${hostUrl}/api/product/searchproducts?query=${searchParams.q}&page=${searchParams.page}`, { cache: 'no-cache' });
     const resData = await response.json();
     return (
 
@@ -65,7 +65,7 @@ export default async function searchProducts({ searchParams }: { searchParams: {
             <div>
                 {(resData.totalPage != 1) ? <>  <button style={{ padding: '.5rem 1.5rem' }}>1</button>
                     <button style={{ padding: '.5rem 1.5rem', marginLeft: '15px' }}>{resData && resData?.totalPage}</button> </> : ""}
-                {(resData.totalPage != resData.page) ? <Link href={`http://127.0.0.1:3001/search?q=${searchParams.q}&id=${searchParams.id}&page=${parseInt(resData.page) + 1}`}> <button style={{ padding: '.5rem 1.5rem' }}>Next</button></Link> : ""}
+                {(resData.totalPage != resData.page) ? <Link href={`/search?q=${searchParams.q}&id=${searchParams.id}&page=${parseInt(resData.page) + 1}`}> <button style={{ padding: '.5rem 1.5rem' }}>Next</button></Link> : ""}
             </div>
         </div>
     )

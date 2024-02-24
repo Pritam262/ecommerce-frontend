@@ -71,7 +71,9 @@ export function AppProvider({ children }: AppProviderProps) {
     const [profileData, setProfileData] = useState<ProfileData | null | undefined>();
     const [cartData, setCartData] = useState<CartData | null | undefined>();
 
-    const hostUrl = "http://127.0.0.1:3000";
+    // const hostUrl = "http://127.0.0.1:3000";
+    const hostUrl = "http://192.168.50.14:3000";
+    // const hostUrl = "https://192.168.50.14:443";
 
     // Get profile data
 
