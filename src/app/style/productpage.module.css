@@ -1,4 +1,4 @@
-.page{
+.page {
     width: 90vw;
     min-height: 100vh;
     max-height: fit-content;
@@ -6,42 +6,44 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-   /* padding: 10px 0 0 10px; */
+    /* padding: 10px 0 0 10px; */
     /* background-color: brown; */
     /* background-color: #fff; */
 }
 
-.productComponent{
+.productComponent {
     width: 100%;
     height: max-content;
     display: flex;
     margin-top: 50px;
 }
 
-.productDetails{
+.productDetails {
     width: 40%;
     padding: 0 10px 0 10px;
     /* background-color: chartreuse; */
 }
 
-.productComponent ul{
+.productComponent .description {
     margin-left: 20px;
 }
 
-.title{
+.title {
     font-size: 35px;
     font-weight: 500;
 }
-.link{
+
+.link {
     font-size: 15px;
-    color:rgb(0, 115, 255)
+    color: rgb(0, 115, 255)
 }
-.price{
+
+.price {
     font-size: 20px;
     /* background-color: #717171; */
 }
 
-.page div .brands{
+.page div .brands {
     font-size: 12px;
     background-color: #525252;
     color: #fff;
@@ -50,7 +52,7 @@
     position: relative;
 }
 
-.page div .brands::after{
+.page div .brands::after {
     position: absolute;
     content: "";
     width: 20px;
@@ -60,19 +62,19 @@
     right: 0;
     transform: translate(36%, -10%);
     rotate: 35deg;
-    
+
 
 }
 
 
 
-.buyOption{
+.buyOption {
     width: 20%;
     height: auto;
     /* background-color: chocolate; */
 }
 
-.buyOption .exchangeContainer{
+.buyOption .exchangeContainer {
     width: 100%;
     min-height: 20%;
     max-height: max-content;
@@ -80,22 +82,169 @@
     border: 1px solid #dadada;
 }
 
-.buyOption .exchangeContainer .exchageOptionContainer{
+.buyOption .exchangeContainer .exchageOptionContainer {
     /* background-color: #dadada; */
     padding: 1rem;
     /* color: black; */
 
 }
-.buyOption .exchangeContainer .notActive{
+
+.buyOption .exchangeContainer .notActive {
     background-color: #f4f4f4;
 }
-.buyOption .exchangeContainer .exchageOptionContainer .btn{
-width: 100%;
-padding: .2rem 1.2rem;
-border: 1px solid #dadada;
-margin: 20px 0 20px 0;
+
+.buyOption .exchangeContainer .exchageOptionContainer .chooseBtn {
+    width: 100%;
+    padding: .2rem 1.2rem;
+    border: 1px solid #dadada;
+    margin: 20px 0 20px 0;
 }
 
-.buyOption .option{
+.buyOption .option {
+    /* height: max-content; */
     display: flex;
+    flex-direction: column;
+    /* background-color: blueviolet; */
+}
+
+.page .option .btn {
+    /* margin: 15px 0 0 15px; */
+    width: 100%;
+    /* margin: 15px 0 0 0; */
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem 1.5rem;
+    border-radius: 20px;
+    /* border: 1px solid #000; */
+    border: none;
+    background-color: rgb(232, 173, 12);
+}
+.page .option .btn:nth-child(1){
+    margin-top: 15px;
+}
+.page .option .btn:not(:last-child){
+    margin-bottom: 5px;
+}
+
+/* .page .option .btn:not(:last-child){
+margin-right: 15px;
+} */
+
+@media screen and (max-width:600px) {
+    .page {
+        width: 100vw;
+        /* background-color: blueviolet; */
+        margin: 0;
+    }
+
+    .page .productComponent {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .page .productDetails{
+        /* background-color: blueviolet; */
+        width: 100%;
+    }
+
+    .page .title {
+        /* font-size: 10px; */
+        font-size: 12px;
+        color: #555555;
+    }
+
+    .link {
+        font-size: 10px;
+    }
+    /* .productDetails{
+        width: 25%;
+        padding: 0;
+    } */
+    .productDetails .description{
+        /* font-size: 8px; */
+        font-size: 12px;
+        margin-left: 15px;
+        /* background-color: chocolate; */
+    }
+
+
+    .buyOption {
+        /* width: 20%; */
+        width: 25%;
+        height: auto;
+        /* background-color: rgb(48, 210, 30); */
+        padding: 0 5px 0 5px;
+        background-color: blueviolet;
+    }
+
+    .buyOption .exchangeContainer {
+        width: 100%;
+        min-height: 15%;
+        max-height: max-content;
+        background-color: rgb(255, 255, 255);
+        border: 1px solid red;
+        /* border: 1px solid #dadada; */
+        font-size: 5px;
+    }
+
+    .buyOption .exchangeContainer .exchageOptionContainer {
+        /* background-color: #dadada; */
+        padding: 5px;
+        /* color: black; */
+
+    }
+
+    .buyOption .exchangeContainer .exchageOptionContainer .radioBtn {
+        width: 10px;
+        height: 10px;
+    }
+
+    .buyOption .exchangeContainer .notActive {
+        background-color: #f4f4f4;
+    }
+
+    .buyOption .exchangeContainer .exchageOptionContainer .btn {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #dadada;
+        margin: 5px 0 5px 0;
+    }
+
+    .page .option {
+        width: 100%;;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* background-color: chocolate; */
+    }
+
+
+    .page .option .btn {
+        /* width: max-content; */
+        width: 100%;
+        margin: 15px 0 0 0;
+        font-size: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        border-radius: 20px;
+        /* border: 1px solid #000; */
+        border: none;
+        background-color: rgb(232, 173, 12);
+    }
+    .page .option .btn:not(:last-child){
+        
+        margin-right: 0;
+        }
+
+
+        .page .table {
+            font-size: 12px;
+        }
 }

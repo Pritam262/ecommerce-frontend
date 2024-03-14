@@ -1,6 +1,7 @@
 "use client"
 
 import Styles from "@/app/style/productcomponent.module.css";
+import Image from "next/image";
 import React, { useState } from "react";
 
 export default function ProductImage(props: any) {
@@ -16,7 +17,7 @@ export default function ProductImage(props: any) {
             <div className={Styles.navigateImageContainer}>
                 {props.images && props.images.map((item: any) => {
                     return (
-                        <img src={`${item?.imageUrl}`} alt="" className={Styles.navImage} key={item?.id} loading="lazy" onClick={(e:React.MouseEvent<HTMLImageElement>)=> setImage((e.currentTarget as HTMLImageElement).src)}  onMouseOver={(e:React.MouseEvent<HTMLImageElement>)=> setImage((e.currentTarget as HTMLImageElement).src)}/>
+                        <Image src={`${item?.imageUrl}`} alt="" width={600} height={600} className={Styles.navImage} key={item?.id} loading="lazy" onClick={(e:React.MouseEvent<HTMLImageElement>)=> setImage((e.currentTarget as HTMLImageElement).src)}  onMouseOver={(e:React.MouseEvent<HTMLImageElement>)=> setImage((e.currentTarget as HTMLImageElement).src)}/>
                     )
                 })}
 

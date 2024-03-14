@@ -44,7 +44,7 @@ export default function SmallHomeHeader() {
             <div className={Styles.header}>
                 <Image src='/MA_3000._CB571190800_.jpg' width={1920} height={1080} alt='' priority className={Styles.headerImage} />
             </div>
-            <Image src='/41P-ARf+EcL._SR1245,150_.jpg' width={600} height={150} alt='' priority className={Styles.banner} />
+            <Image src='/41P-ARf+EcL._SR1245,150_.jpg' width={600} height={338} alt='' priority className={Styles.banner} />
             <div className={Styles.addContainer}>
                 <p>Starting $199 | Delas on fashion, beauty, Kitchen & more</p>
 

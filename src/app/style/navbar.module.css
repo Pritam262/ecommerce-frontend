@@ -100,7 +100,8 @@
     height: 400px;
     background-color: bisque;
     position: absolute;
-    top: 8vh;
+    /* top: 8vh; */
+    top: 100%;
     left: 50%;
     transform: translate(-50%, 0);
     z-index: 2;
@@ -111,6 +112,16 @@
     display: none;
 }
 
+
+
+@media  screen and (max-width:900px) {
+       .searchSuggestion{
+    width: 100vw;
+    /* top: 8vh;
+    left: 50%;
+    transform: translate(-50%, 0); */
+   }
+}
 
 
 @media screen and (max-width:600px) {
@@ -215,6 +226,14 @@
     .rightNavbar .personIcon{
         display: block;
     }
+
+   .searchSuggestion{
+    width: 100vw;
+    /* top: 5vh; */
+    /* top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0); */
+   }
 }
 
 

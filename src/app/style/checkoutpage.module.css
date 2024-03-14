@@ -1,0 +1,19 @@
+.addressContainer {
+    width: 80%;
+    height: fit-content;
+    background-color: cornsilk;
+    padding: 10px;
+    display: flex;
+}
+
+.addressContainer:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.addressContainer .addressCheckBox{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+    color: blueviolet;
+}

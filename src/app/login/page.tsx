@@ -27,6 +27,7 @@ export default function LoginPage() {
     const handleLogin = async () => {
         const response = await fetch(`${hostUrl}/api/auth/login`, {
             method: 'POST',
+            credentials:'include',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -56,7 +57,7 @@ export default function LoginPage() {
         <div className={Styles.container}>
             <div className={Styles.boxContainer}>
                 <h3>Login</h3>
-                <input type="text" name="email" id="email" placeholder='Email' onChange={handleChange} value={credencials.email} />
+                <input type="email" name="email" id="email" placeholder='Email' onChange={handleChange} value={credencials.email} />
                 <input type="password" name="password" id="password" placeholder='Password' onChange={handleChange} value={credencials.password} />
                 <button onClick={handleLogin}>Login</button>
                 <p style={{ fontSize: '12px', 'color': 'red', }}>{errorText?`*${errorText}`:''}</p>

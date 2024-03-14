@@ -1,5 +1,6 @@
-
+'use server'
 import { Metadata } from 'next';
+import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import Styles from "@/app/style/searchpage.module.css";
@@ -20,20 +21,30 @@ export async function generateMetadata({ searchParams }: { searchParams: { [key:
     };
 }
 
-export default async function searchProducts({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
 
-    // console.log("Slug", searchParams)
+export default async function searchProducts({params, searchParams }: {params:{slug:string}; searchParams: { [key: string]: string | string[] | undefined } }, res:any) {
 
-    // const fetchSearchProducts = async (page:number) => {
-    //     const response = await fetch(`http://127.0.0.1:3000/api/product/searchproducts?query=${searchParams.q}&page=${page}`);
-    //     const resData = await response.json();
-    //     // console.log(resData);
-    //     return resData;
-    // }
-    // fetchSearchProducts(1);
     const hostUrl = process.env.SERVER_IP;
-    const response = await fetch(`${hostUrl}/api/product/searchproducts?query=${searchParams.q}&page=${searchParams.page}`, { cache: 'no-cache' });
-    const resData = await response.json();
+    // const response = await fetch(`${hostUrl}/api/product/searchproducts?query=${searchParams.q}&page=${searchParams.page}`, { cache: 'no-cache'});
+    const response = await axios.get(`${hostUrl}/api/product/searchproducts?query=${searchParams.q}&page=${searchParams.page}`, {
+        method:'get',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    // const response = await fetch(`${hostUrl}/api/product/searchproducts?query=${searchParams.q}&page=${searchParams.page}`, {
+    //     cache: 'no-cache',
+    //     // credentials: 'include' // Include cookies
+    //   });
+
+    // const resData = await response.json();
+
+    // console.log(resData);
+// 
+    const resData = await response.data;
+
+
+
     return (
 
         <div className={Styles.page}>
