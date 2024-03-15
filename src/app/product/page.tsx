@@ -42,6 +42,7 @@ export default async function productPage({ params, searchParams }: { params: { 
 
     return (
         <>
+        <Navbar/>
             {/* <Navbar/> */}
             <div className={Styles.page}>
 
@@ -54,7 +55,7 @@ export default async function productPage({ params, searchParams }: { params: { 
                         <p className={Styles.title}>{data?.title}</p>
                         <Link href={`/seller?q=${data?.seller.id}`} className={Styles.link}>Visit the {data?.seller.sellername} store</Link>
                         {/* <p>{data?.description}</p> */}
-                        <ul>
+                        <ul className={Styles.description}>
 
                         {data?.description && data?.description.map((item:any, index:number)=>{
                             return(
@@ -74,13 +75,9 @@ export default async function productPage({ params, searchParams }: { params: { 
 
                     <div className={Styles.buyOption}>
 
-                        <ExchangeComponent price={data?.price} />
+                        <ExchangeComponent price={data?.price} title={`${data?.title}`} id={`${data?.id}`}/>
 
-                        <div className={Styles.option}>
-                            <CartButton id={String(data?.id)} title={data?.title} />
-                            <BuyButton id={String(data?.id)} type={'single'} />
-
-                        </div>
+            
                     </div>
 
                 </div>
@@ -88,7 +85,7 @@ export default async function productPage({ params, searchParams }: { params: { 
                 <div style={{display:'flex', alignItems:'center'}}><span className={Styles.brands}>Top Brands</span> <p>{data?.seller.sellername}</p></div>
 
                 {data && (
-                    <table>
+                    <table className={Styles.table}>
                     <tbody>
                       {data .technicaldetails && data.technicaldetails.map((details:any) => (
                         Object.entries(details).map(([key, value]) => (

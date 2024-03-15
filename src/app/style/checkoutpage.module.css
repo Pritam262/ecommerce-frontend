@@ -1,0 +1,90 @@
+.page{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+.addressContainer {
+    width: 50%;
+    height: fit-content;
+    /* background-color: cornsilk; */
+    background-color: rgb(237, 237, 237);
+    /* box-shadow:5px 5px 10px 0 #000; */
+    padding: 10px;
+    display: flex;
+}
+
+.activeAddressContainer{
+    box-shadow:5px 5px 10px 0 #000;
+}
+
+.addressContainer:hover{
+    box-shadow:5px 5px 10px 0 #000;
+    transition-duration: .5s;
+}
+
+.addressContainer:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.cartContainer{
+    width: 50%;
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+
+}
+
+.cartCard {
+    width: 100%;
+    /* background-color: darkseagreen; */
+    display: flex;
+    /* border: 1px solid red; */
+}
+
+.cartCard:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.cartCard .cartCardDetails {
+    padding: 0 0 0 10px;
+}
+
+.cartContainer .pamentOption .payOption {
+    width: 15%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    /* background-color: blueviolet; */
+}
+.inputRadio{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+    /* color: blueviolet; */
+}
+
+.cartContainer .pamentOption .payOption:not(:last-child){
+    margin-bottom: 5px;
+}
+
+.cartContainer .payBtn{
+    /* width: fit-content; */
+    width: 145px;
+   padding: 10px;
+   margin-top: 10px;
+   /* background-color: blueviolet; */
+   background-color: rgb(251, 222, 28);
+   box-shadow:5px 5px 5px 0 #000;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.cartContainer .payBtn button{
+    background-color: transparent;
+    border: none;
+    color:#000;
+}

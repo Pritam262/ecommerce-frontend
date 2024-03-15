@@ -98,7 +98,8 @@
     height: 400px;
     background-color: bisque;
     position: absolute;
-    top: 8vh;
+    /* top: 8vh; */
+    top:20%;
     left: 50%;
     transform: translate(-50%, 0);
     z-index: 2;
@@ -109,6 +110,15 @@
 
 .rightNavbar .personIcon {
     display: none;
+}
+
+@media screen and (max-width:900px) {
+    .searchSuggestion{
+        width: 100vw;
+        top: 9%;
+        left: 50%;
+        transform: translate(-50%, 0);
+       }
 }
 
 

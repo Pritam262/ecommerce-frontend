@@ -1,6 +1,7 @@
 'use client'
 import { createContext, ReactNode, useContext, useState, useEffect } from "react";
-
+import { cookies } from "next/headers";
+import axios from "axios";
 interface AddressItem {
     id: string;
     addressline: string;
@@ -72,8 +73,10 @@ export function AppProvider({ children }: AppProviderProps) {
     const [cartData, setCartData] = useState<CartData | null | undefined>();
 
     // const hostUrl = "http://127.0.0.1:3000";
-    const hostUrl = "http://192.168.50.14:3000";
+    // const hostUrl = "http://192.168.171.25:3000";
     // const hostUrl = "https://192.168.50.14:443";
+    const hostUrl = "http://192.168.50.14:3000";
+
 
     // Get profile data
 
@@ -85,27 +88,30 @@ export function AppProvider({ children }: AppProviderProps) {
         }
 
         try {
-            const response = await fetch(`${hostUrl}/api/auth/profile`, {
+            const response = await axios.get(`${hostUrl}/api/auth/profile`, {
                 method: 'GET',
+               withCredentials:true,
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-token': authToken,
                 },
             });
 
-            if (!response.ok) {
+            if (!response) {
                 // Handle non-OK response status here
                 // Example: throw new Error('Failed to fetch profile data');
                 throw new Error('Failed to fetch profile data');
             }
 
-            const resData = await response.json();
+            // const resData = await response.json();
+            const resData = await response.data;
             setProfileData(resData.data);
         } catch (error) {
             // Handle errors here (e.g., network errors, failed API response, etc.)
             console.error('Error fetching profile:', error);
         }
     };
+
 
 
     // Delete address
@@ -120,7 +126,8 @@ export function AppProvider({ children }: AppProviderProps) {
                 method: 'delete',
                 headers: {
                     'auth-token': `${localStorage.getItem('auth-token')}`,
-                }
+                },
+                credentials:'include',
             });
 
             const data = await response.json();
@@ -159,6 +166,7 @@ export function AppProvider({ children }: AppProviderProps) {
                     'Content-Type': 'application/json',
                     'auth-token': authToken,
                 },
+                credentials:'include',
 
                 cache:'no-cache',
             });
@@ -186,7 +194,8 @@ export function AppProvider({ children }: AppProviderProps) {
                     method: "DELETE",
                     headers: {
                         'auth-token': `${localStorage.getItem('auth-token')}`,
-                    }
+                    },
+                    credentials:'include',
                 });
 
                 if (!response.ok) {

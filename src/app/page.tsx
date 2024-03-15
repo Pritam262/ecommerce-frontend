@@ -1,6 +1,7 @@
-"use client"
+// "use client"
 import HomePage from "../../components/home"
-export default function Home() {
+export default async  function Home() {
+
 
   return (
  <HomePage/>
