@@ -3,6 +3,8 @@
 import { useAppContext } from "@/app/context/appContext"
 import { useEffect, useState } from "react";
 import Styles from '@/app/style/orderpage.module.css';
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface productItem {
     title: string,
@@ -29,6 +31,9 @@ interface OrderData {
 
 
 export default function orderPage() {
+
+    const router = useRouter();
+
     const { hostUrl } = useAppContext();
 
     const [orderData, setOrderData] = useState<OrderData | null | undefined>();
@@ -60,7 +65,8 @@ export default function orderPage() {
             <div className={Styles.orderComponent}>
                 {orderData?.orderData.map(item => {
                     return (
-                        <div key={item?.id} className={Styles.card}>
+                   
+                        <div key={item?.id} className={Styles.card} onClick={()=> router.push(`/account/order/${item?.id}`)}>
 
                            
                                 <img src={item?.product?.imageUrl} alt="" width={150} height={150} />
@@ -71,10 +77,11 @@ export default function orderPage() {
                                     <p>{item?.product?.totalPrice}</p>
                                     <p >{item?.address}</p>
                                     <p>{item?.mode}</p>
-                                    <p>{item?.transId}</p> */}
+                                <p>{item?.transId}</p> */}
                                 </div>
                          
                         </div>
+                              
                     )
                 })}
             </div>

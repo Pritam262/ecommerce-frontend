@@ -15,6 +15,7 @@
     background-color: rgb(236, 236, 236);
     box-shadow: #000 5px 5px 10px 0;
     padding: 10px;
+   cursor:pointer;
 }
 .page .orderComponent .card:not(:last-child){
     margin-bottom: 20px;
