@@ -1,14 +1,33 @@
 .page{
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
+    /* height: 200vh; */
     background-color: rgb(225, 225, 225);
-    margin: auto;
+    /* margin: auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.page .navigation{
+    width: 50%;
+    height: 50px;
+   display: flex;
+   align-items: center;
+   /* margin: auto; */
+
+   /* background-color: chartreuse; */
+   margin-top: 15px;
+   margin-bottom: 30px;
+}
+
+.page .navigation .link{
+    margin: 0 10px 0 10px;
+}
 .page .component{
     width: 50%;
     height: auto;
-    margin: auto;
+    /* margin: auto; */
     /* background-color: blue; */
     display: grid;
     grid-template-areas:  'item1 item1 item1 item1 item2 item2'
@@ -16,8 +35,9 @@
     'item4 item4 item4 item4 item3 item3'
     'item4 item4 item4 item4 item3 item3'
     'item5 item5 item5 item5 item3 item3';
-
     gap: 20px;
+    position: absolute;
+    margin-top: 100px;
 }
 
 .product{
@@ -30,6 +50,8 @@
     align-items: center;
     justify-content: space-around;
     grid-area: item1;
+
+    box-shadow: #000 2px 2px 10px 0;
 }
 
 .product .details{
@@ -39,17 +61,9 @@
 }
 
 .product .details .title{
-    font-size: 30px;
+    font-size: 25px;
 }
 
-.page .navigation{
-    width: 50%;
-    height: 50px;
-   display: flex;
-   align-items: center;
-   margin: auto;
-   /* background-color: chartreuse; */
-}
 
 .page .navigation .link{
     /* margin-top: 20px; */
@@ -76,6 +90,8 @@
     /* background-color: blueviolet; */
     background-color: #fff;
     /* border: 1px solid red; */
+    box-shadow: #000 2px 2px 10px 0;
+    
 }
 
 
@@ -86,17 +102,25 @@
     /* background-color: blueviolet; */
     background-color: #fff;
     padding: 30px;
+
+    box-shadow: #000 2px 2px 10px 0;
 }
 
 
 .component .orderInfo{
     width: 100%;
     /* height: 150px; */
-    height: 100%;
+    height: fit-content;
+    /* height: 100%; */
     grid-area: item3;
     padding: 30px;
     /* background-color: cadetblue; */
     background-color: #fff;
+    /* background-color: blue; */
+    position: sticky;
+    top: 0;
+
+    box-shadow: #000 2px 2px 10px 0;
 }
 
 .component .orderInfo hr{
@@ -111,4 +135,43 @@
     grid-area: item5;
     /* background-color: coral; */
     background-color: #fff;
+
+
+    box-shadow: #000 2px 2px 10px 0;
+}
+
+
+.flexOrder{
+    width: 100vw;
+    /* height: 300px; */
+    display: flex;
+    flex-direction: column;
+    /* background-color: blue; */
+    background-color: rgb(225, 225, 225);
+}
+
+.flexOrder .heading{
+    font-size :20px;
+    font-weight: 500;
+}
+
+.prevOrderComponent{
+    width: 100vw;
+    height: 320px;
+    /* background-color: #d34747; */
+    /* background-color: rgb(225, 225, 225); */
+    margin-top: 15px;
+    display: flex;
+    overflow-x: auto;
+}
+.prevOrderComponent .card{
+    width: 250px;
+    height: 100%;
+    /* flex: 0 0 calc(100% / 5); */
+    background-color: #fff;
+    padding: 10px;
+}
+
+.prevOrderComponent .card:not(:last-child){
+    margin-right: 15px;
 }

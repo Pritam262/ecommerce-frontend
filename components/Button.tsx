@@ -24,7 +24,7 @@ export const CartButton: React.FC<CartBtn> = ({ id, title }) => {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json',
-                    'auth-token': `${localStorage.getItem('auth-token')}`
+                    'authtoken': `${localStorage.getItem('auth-token')}`
                 },
                 body: JSON.stringify({ qty: qty })
             })
