@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import Styles from "@/app/style/checkoutpage.module.css";
 import { useEffect, useState } from "react";
 
+// const Razorpay = require('razorpay');
 export default function CheckoutPage({
   params,
   searchParams,
@@ -15,10 +16,13 @@ export default function CheckoutPage({
 
   const token = searchParams;
   // const [cartData, setCartData] = useState<CartData | null | undefined>();
-  const { hostUrl, profileData, cartData } = useAppContext();
+  const { hostUrl, profileData, cartData , RAZOR_KEY_ID} = useAppContext();
   const [payOption, setPayOption] = useState(0);
   const [addressIndex, setAddressIndex] = useState(0);
 
+  const [orderId, setOrderId] = useState('');
+  const [paymentId, setPaymentId] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
 
 
@@ -52,26 +56,71 @@ export default function CheckoutPage({
         console.log(error);
       }
     }
-    else {
+
+    else{
       try {
 
-        const response = await fetch(`${hostUrl}/api/order?type=cart&mode=paynow`, {
+        const response = await fetch(`${hostUrl}/api/payment/order?type=cart`, {
           method:'POST',
           credentials:'include',
-          headers: {
-            'Content-Type': 'application/json',
+          headers:{
+            'Content-Type':'application/json',
           },
-          body:Data
-        });
+          body:JSON.stringify({amount:totalPrice}),
+        })
+        
+        const data = await response.json();
 
-        console.log(await response.json())
+        console.log("Rasponse Order Data", data)
+
+        const options = {
+          key: RAZOR_KEY_ID, // Razorpay Key ID
+          amount: Number(totalPrice * 100), // Example amount
+          currency: 'INR',
+          name: 'E Com',
+          description: 'Purchase description',
+          order_id: data.id,
+          notes: {
+              address: "Razorpay Corporate Office"
+          },
+          theme: {
+              color:  "#A951F0"
+          },
+          handler: async function (response: any) {
+
+            console.log("Handler response", response)
+            try {
+              const paymentResponse = await fetch(`${hostUrl}/api/payment/payment-validation`, {
+                method:'POST',
+                credentials:'include',
+                headers:{
+                  'Content-Type':'application/json',
+                },
+                body:JSON.stringify({'payment_id': response.razorpay_payment_id,'order_id': response.id, 'signature': response.razorpay_signature,})
+              },);
+
+              console.log("validation data", await paymentResponse.json());
+              setPaymentId(response.razorpay_payment_id);
+            } catch (error) {
+              console.error('Error processing payment:', error);
+              setErrorMessage('Error processing payment');
+            }
+          },
+        };
+
+
+        const razorpayInstance = new Razorpay(options);
+        razorpayInstance.open();
+
+        // console.log(window);
+        
+
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-
-      console.log(Data, type);
     }
   }
+
 
 
 
@@ -119,6 +168,8 @@ export default function CheckoutPage({
           <div className={Styles.payBtn}>
             {payOption === 0 ? <button onClick={() => payNow("cod")}>Submit</button> : <button onClick={() => payNow("paynow")}>Pay Now ₹{cartData?.totalPrice}</button>}
           </div>
+          <br/>
+            <p>Payment Id: {paymentId}</p>
         </>
         }
 
