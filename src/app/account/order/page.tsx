@@ -22,6 +22,8 @@ interface orderObject {
     address: string,
     phone: string,
     transId: string,
+    isCancel:Boolean,
+    isDeliverd:Boolean,
     date: string,
 
 }
@@ -70,8 +72,9 @@ export default function orderPage() {
 
                            
                                 <img src={item?.product?.imageUrl} alt="" width={150} height={150} />
-                                    <p>{item?.product?.title}</p>
                                 <div>
+                                    <p>{item?.product?.title}</p>
+                                    {item?.isCancel ? <p style={{color:"red"}}>Order Canceled</p> : " "}
                                     {/* <p>{item?.product?.qty}</p>
                                     <p>{item?.product?.price}</p>
                                     <p>{item?.product?.totalPrice}</p>
