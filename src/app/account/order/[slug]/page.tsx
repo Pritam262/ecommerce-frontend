@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import Styles from "@/app/style/ordercomponent.module.css";
+import CancelBtn from "../../../../../components/cancelBtn";
 
 interface ProductData {
     id: string;
@@ -17,6 +18,7 @@ interface OrderItem {
     mode: string;
     product: ProductData;
     isDeliverd:Boolean;
+    isCancel:Boolean;
     qty: number;
     price: number;
     address: string;
@@ -55,7 +57,15 @@ export default async function orderProduct({ params }: { params: { slug: string 
 
     const data: OrderData = await response.json();
 
+    console.log(data)
 
+
+    const isDeliverd = false;
+    const isCancel = true;
+
+    // console.log( isDeliverd ===false ? "show": isCancel === false ? "Show" : "Hide")
+
+    // console.log(isDeliverd!=true && isCancel!= true ? "show btn" : isDeliverd && isCancel ? "show" : "Hide Btn");
 
     const prevOrder = await fetch(`${process.env.SERVER_IP}/api/order`, {
         method: 'GET',
@@ -88,6 +98,8 @@ export default async function orderProduct({ params }: { params: { slug: string 
     return (
         // <Link href={`/product?q=${data.order.product.title}&id=${data.order.product.id}`}>
         <>
+
+        {/* Order product start */}
             <div className={Styles.page}>
                 <span className={Styles.navigation}><Link href={`/account`} className={Styles.link}>Your account </Link> <p> {" > "}</p> <Link href={`/account/order`} className={Styles.link}>Your Orders</Link> <p> {" > "}</p>  <p>{data.order.product.title.substring(0, 25)}.....</p></span>
                 <div className={Styles.component}>
@@ -108,7 +120,12 @@ export default async function orderProduct({ params }: { params: { slug: string 
                         <div className={Styles.check}></div>
                         <div>
                             {data?.order?.isDeliverd ===false ? " " :<p>Deliverd 6 March</p>}
-                            <p>Package was handed to resident</p>
+                            {data?.order?.isDeliverd ===false ? " " :<p>Package was handed to resident</p>}
+                            {/* {data?.order?.isDeliverd != true || data?.order?.isCancel != true  ? <CancelBtn id={data?.order?.id}/>:" "} */}
+                            {/* {data?.order?.isDeliverd != true || data?.order?.isCancel != true  ? null : <CancelBtn id={data?.order?.id}/>}  */}
+                            {data?.order?.isDeliverd!=true && data?.order?.isCancel!= true ? <CancelBtn id={data?.order?.id}/> : data?.order?.isDeliverd && data?.order?.isCancel ? <CancelBtn id={data?.order?.id}/> : <p style={{color:'red'}}>Order Canceled</p>}
+
+            
                         </div>
 
                         <div><p>Track package</p></div>
@@ -132,6 +149,12 @@ export default async function orderProduct({ params }: { params: { slug: string 
                 </div>
 
             </div>
+
+
+            {/* Order product end */}
+
+
+            {/* Your previous order div start */}
             <div className={Styles.flexOrder}>
                 <p className={Styles.heading}>Your previous Order</p>
                 <div className={Styles.prevOrderComponent}>
@@ -148,7 +171,7 @@ export default async function orderProduct({ params }: { params: { slug: string 
                             <div className={Styles.card} key={index}>
 
                                 <img src={item?.product?.imageUrl} width={230} height={180} alt="" loading="lazy" />
-                                <Link href={`http://192.168.50.14:3001/product?q=${item?.product?.title}&id=${item?.product?.id}`}>{item?.product?.title}</Link>
+                                <Link href={`/product?q=${item?.product?.title}&id=${item?.product?.id}`}>{item?.product?.title}</Link>
                             </div>
 
                         )
@@ -157,6 +180,11 @@ export default async function orderProduct({ params }: { params: { slug: string 
                     }
                 </div>
             </div>
+
+
+            {/* Your previous order div end */}
+
+
         </>
         // </Link>
 
