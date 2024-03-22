@@ -37,14 +37,7 @@ const nextConfig = {
     }
     ],
   },
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: '/api/:path*',
-  //       destination: 'http://192.168.50.14:3000/api/:path*',
-  //     },
-  //   ];
-  // },
+
 }
 
 // module.exports = nextConfig
