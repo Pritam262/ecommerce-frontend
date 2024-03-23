@@ -16,9 +16,11 @@ interface OrderItem {
     user: string;
     transId: string;
     mode: string;
+    razorPayMethod: string;
+    reazorPayId: string;
     product: ProductData;
-    isDeliverd:Boolean;
-    isCancel:Boolean;
+    isDeliverd: Boolean;
+    isCancel: Boolean;
     qty: number;
     price: number;
     address: string;
@@ -57,12 +59,6 @@ export default async function orderProduct({ params }: { params: { slug: string 
 
     const data: OrderData = await response.json();
 
-    console.log(data)
-
-
-    const isDeliverd = false;
-    const isCancel = true;
-
     // console.log( isDeliverd ===false ? "show": isCancel === false ? "Show" : "Hide")
 
     // console.log(isDeliverd!=true && isCancel!= true ? "show btn" : isDeliverd && isCancel ? "show" : "Hide Btn");
@@ -78,7 +74,7 @@ export default async function orderProduct({ params }: { params: { slug: string 
     const prevOrderData: PrevOrder = await prevOrder.json();
 
 
-    const getMonth = (data:any)=>{
+    const getMonth = (data: any) => {
 
         const month = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Aug', 'Dec']
 
@@ -86,7 +82,7 @@ export default async function orderProduct({ params }: { params: { slug: string 
 
     }
 
-    const getDateFormate = (date:any)=>{
+    const getDateFormate = (date: any) => {
 
 
         const convertDate = new Date(date);
@@ -99,7 +95,7 @@ export default async function orderProduct({ params }: { params: { slug: string 
         // <Link href={`/product?q=${data.order.product.title}&id=${data.order.product.id}`}>
         <>
 
-        {/* Order product start */}
+            {/* Order product start */}
             <div className={Styles.page}>
                 <span className={Styles.navigation}><Link href={`/account`} className={Styles.link}>Your account </Link> <p> {" > "}</p> <Link href={`/account/order`} className={Styles.link}>Your Orders</Link> <p> {" > "}</p>  <p>{data.order.product.title.substring(0, 25)}.....</p></span>
                 <div className={Styles.component}>
@@ -119,13 +115,13 @@ export default async function orderProduct({ params }: { params: { slug: string 
                     <div className={Styles.delivery}>
                         <div className={Styles.check}></div>
                         <div>
-                            {data?.order?.isDeliverd ===false ? " " :<p>Deliverd 6 March</p>}
-                            {data?.order?.isDeliverd ===false ? " " :<p>Package was handed to resident</p>}
+                            {data?.order?.isDeliverd === false ? " " : <p>Deliverd 6 March</p>}
+                            {data?.order?.isDeliverd === false ? " " : <p>Package was handed to resident</p>}
                             {/* {data?.order?.isDeliverd != true || data?.order?.isCancel != true  ? <CancelBtn id={data?.order?.id}/>:" "} */}
                             {/* {data?.order?.isDeliverd != true || data?.order?.isCancel != true  ? null : <CancelBtn id={data?.order?.id}/>}  */}
-                            {data?.order?.isDeliverd!=true && data?.order?.isCancel!= true ? <CancelBtn id={data?.order?.id}/> : data?.order?.isDeliverd && data?.order?.isCancel ? <CancelBtn id={data?.order?.id}/> : <p style={{color:'red'}}>Order Canceled</p>}
+                            {data?.order?.isDeliverd != true && data?.order?.isCancel != true ? <CancelBtn id={data?.order?.id} isCancel={data?.order?.isCancel}/> : data?.order?.isDeliverd && data?.order?.isCancel ? <CancelBtn id={data?.order?.id} isCancel={data?.order?.isCancel}/> : <p style={{ color: 'red' }}>Order Canceled</p>}
 
-            
+
                         </div>
 
                         <div><p>Track package</p></div>

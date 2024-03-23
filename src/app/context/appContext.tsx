@@ -35,7 +35,7 @@ interface CartProducts {
 }
 interface CartData {
     products: Array<CartProducts>;
-    totalPrice: number;
+    totalPrice: string;
     totalLength: number;
 }
 type AppContextType = {
