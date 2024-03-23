@@ -1,0 +1,43 @@
+.page{
+    width: 100vw;
+    /* background-color: brown; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0 20px 0;
+}
+.page .orderComponent{
+    width: 50%;
+}
+.page .orderComponent .card{
+    width: 100%;
+    display: flex;
+    background-color: rgb(236, 236, 236);
+    box-shadow: #000 5px 5px 10px 0;
+    padding: 10px;
+   cursor:pointer;
+}
+.page .orderComponent .card:not(:last-child){
+    margin-bottom: 20px;
+}
+
+.page .orderComponent .card p{
+    margin-left: 10px;
+}
+
+
+
+@media screen and (max-width:600px) {
+    .page .orderComponent{
+        width:90%;
+    }
+
+    .page .orderComponent img{
+        width: 60px;
+        height: auto;
+    }
+
+    .page .orderComponent .card p{
+        font-size: 10px;
+    }
+}

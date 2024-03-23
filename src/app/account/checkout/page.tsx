@@ -4,21 +4,8 @@ import axios from "axios";
 import { cookies } from "next/headers";
 import Styles from "@/app/style/checkoutpage.module.css";
 import { useEffect, useState } from "react";
-interface CartProducts {
-  id: string;
-  productId: string;
-  title: string;
-  imageUrl: string;
-  qty: number;
-  price: number;
-  proTotalPrice: number;
-}
-interface CartData {
-  products: Array<CartProducts>;
-  totalPrice: string;
-  totalLength: number;
-  token: string;
-}
+
+// const Razorpay = require('razorpay');
 export default function CheckoutPage({
   params,
   searchParams,
@@ -27,137 +14,119 @@ export default function CheckoutPage({
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
 
-  const token = searchParams;
-  // const [cartData, setCartData] = useState<CartData | null | undefined>();
-  const { hostUrl, profileData , cartData} = useAppContext();
+  const type = searchParams?.type;
+
+  const { hostUrl, profileData, cartData , RAZOR_KEY_ID} = useAppContext();
   const [payOption, setPayOption] = useState(0);
   const [addressIndex, setAddressIndex] = useState(0);
 
-  // const orderProduct = async () => {
 
-  //   try {
-
-  //     const response = await fetch(`${hostUrl}/api/order?type=cart`, {
-  //       method: 'post',
-  //       headers: {
-  //         'auth-token': String(searchParams?.id)
-  //       },
-  //       credentials: 'include',
-  //     });
-
-  //     setCartData(await response.json());
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
-  // const getCartProduct = async () => {
-  //   try {
-
-  //     const response = await axios.get(`${hostUrl}/api/product/cartproduct`, { withCredentials: true })
-
-  //     setCartData(await response.data)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
-  // console.log(searchParams);
-  useEffect(() => {
-    // getPostData()
-    // orderProduct();
-    // getCartProduct()
-  }, [])
-
-  // const generateTransId = (length:number)=>{
-
-  //   const smLetter = "abcdefghijklmnopqrstuvwxyz";
-  //   const cpLetter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  //   const numericLetter = "123456789";
+  const [paymentId, setPaymentId] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
 
 
-  //   return length;
-
-  // }
+  const payNow = async (mode: String) => {
 
 
-  function generateTransId(length:number) {
-    const numCount = 4; // Minimum count of numeric characters
-    const smCount = 4; // Minimum count of alphabetic characters
-    const cpCount = 4;
-
-    // Characters to use in the OTP
-    const numericCharacters = '123456789';
-    const cpCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const smCharacters = 'abcdefghijklmnopqrstuvwxyz';
-
-    let transId = '';
-
-    // Generate minimum required numeric characters
-    for (let i = 0; i < numCount; i++) {
-        transId += numericCharacters.charAt(Math.floor(Math.random() * numericCharacters.length));
-    }
-
-    // Generate minimum required alphabetic characters
-    for (let i = 0; i < smCount; i++) {
-        transId += cpCharacters.charAt(Math.floor(Math.random() * cpCharacters.length));
-    }
-
-       // Generate minimum required alphabetic characters
-       for (let i = 0; i < smCount; i++) {
-        transId += smCharacters.charAt(Math.floor(Math.random() * smCharacters.length));
-    }
-
-    // Generate remaining characters randomly
-    const remainingLength = length - (numCount + cpCount + smCount);
-    const characters = numericCharacters + cpCharacters;
-
-    for (let i = 0; i < remainingLength; i++) {
-        transId += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-
-    // Shuffle the OTP characters to randomize their positions
-    transId = shuffleString(transId);
-
-    return transId;
-}
-
-// const createOtp = generateOTP(6);
-
-// Function to shuffle the characters in the OTP string
-function shuffleString(str:string) {
-    const arr = str.split('');
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr.join('');
-}
-
-  const payNow = ()=>{
-
-    const address  =profileData?.address[addressIndex];
+    const address = profileData?.address[addressIndex];
     const item = cartData?.products
-    const totalPrice = cartData?.totalPrice;
+    const totalPrice = Number(cartData?.totalPrice) || 1;
 
-    const transId = generateTransId(30);
+    // const transId = generateTransId(30);
 
-    const Data = JSON.stringify({address,item, totalPrice, transId});
+    const Data = JSON.stringify({ address, item, totalPrice});
+
+    if (mode === "cod") {
+
+      try {
+
+        const response = await fetch(`${hostUrl}/api/order?type=cart&mode=cod`, {
+          method:"POST",
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body:Data
+        });
+
+        console.log(await response.json())
+      } catch (error) {
+
+        console.log(error);
+      }
+    }
+
+    else{
+      try {
+
+        const response = await fetch(`${hostUrl}/api/payment/order?type=${type}`, {
+          method:'POST',
+          credentials:'include',
+          headers:{
+            'Content-Type':'application/json',
+          },
+          body:JSON.stringify({amount:totalPrice}),
+        })
+        
+        const data = await response.json();
+
+        const options = {
+          key: RAZOR_KEY_ID, // Razorpay Key ID
+          amount: Number(totalPrice * 100), // Example amount
+          currency: 'INR',
+          name: 'E Com',
+          description: 'Purchase description',
+          order_id: data.order.id,
+          notes: {
+              address: "Razorpay Corporate Office"
+          },
+          theme: {
+              color:  "#A951F0"
+          },
+          handler: async function (response: any) {
+            try {
+              const paymentResponse = await fetch(`${hostUrl}/api/payment/payment-validation?type=${data.type}`, {
+                method:'POST',
+                credentials:'include',
+                headers:{
+                  'Content-Type':'application/json',
+                },
+                body:JSON.stringify({'payment_id': response.razorpay_payment_id,'order_id': response.razorpay_order_id, 'signature': response.razorpay_signature, 'address': address})
+              });
+
+              console.log(await paymentResponse.json());
+
+              setPaymentId(response.razorpay_payment_id);
+            } catch (error) {
+              console.error('Error processing payment:', error);
+              setErrorMessage('Error processing payment');
+            }
+          },
+        };
 
 
+        const razorpayInstance = new Razorpay(options);
+        razorpayInstance.open();
 
-    console.log(Data);
+        // console.log(window);
+        
 
-
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
+
+
+
 
   return (
     <div className={Styles.page}>
       {profileData && profileData.address.map((item, index) => {
         return (
-          <div key={index} className={`${Styles.addressContainer} ${addressIndex === index ? Styles.activeAddressContainer : Styles.addressContainer}`} onClick={()=> setAddressIndex(index)}>
-            <input type="radio" name="addressCheckBox" id={item?.id} className={Styles.inputRadio}  checked={addressIndex===index} onChange={()=> setAddressIndex(index)} />
+          <div key={index} className={`${Styles.addressContainer} ${addressIndex === index ? Styles.activeAddressContainer : Styles.addressContainer}`} onClick={() => setAddressIndex(index)}>
+            <input type="radio" name="addressCheckBox" id={item?.id} className={Styles.inputRadio} checked={addressIndex === index} onChange={() => setAddressIndex(index)} />
             <div>
 
               <p>{item?.addressline}</p>
@@ -194,13 +163,11 @@ function shuffleString(str:string) {
             <div className={Styles.payOption}><input className={Styles.inputRadio} type="radio" name="payoption" id="" defaultChecked={payOption === 1 ? true : false} onChange={() => setPayOption(1)} /> <p>Pay now</p></div>
           </div>
           <div className={Styles.payBtn}>
-            {payOption === 0 ? <button>Submit</button> : <button onClick={ payNow}>Pay Now ₹{cartData?.totalPrice}</button>}
+            {payOption === 0 ? <button onClick={() => payNow("cod")}>Submit</button> : <button onClick={() => payNow("paynow")}>Pay Now ₹{cartData?.totalPrice}</button>}
           </div>
         </>
         }
 
-
-        {/* <button className={Styles.payBtn}>{payOption === 0 ? "Submit" : `Pay now ${cartData?.totalPrice}`}</button> */}
       </div>
     </div>
   )

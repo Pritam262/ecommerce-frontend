@@ -46,6 +46,7 @@ type AppContextType = {
     deleteAddress: (user: string, id: string, index: number) => void;
     handleDeleteCartProduct: (id: string) => void;
     hostUrl: string;
+    RAZOR_KEY_ID :string;
 
 };
 
@@ -77,6 +78,7 @@ export function AppProvider({ children }: AppProviderProps) {
     // const hostUrl = "https://192.168.50.14:443";
     const hostUrl = "http://192.168.50.14:3000";
 
+   const  RAZOR_KEY_ID = "rzp_test_Dn6sckSxHlsyXL";
 
     // Get profile data
 
@@ -259,6 +261,7 @@ export function AppProvider({ children }: AppProviderProps) {
         deleteAddress,
         handleDeleteCartProduct,
         hostUrl,
+        RAZOR_KEY_ID,
     };
 
     return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
