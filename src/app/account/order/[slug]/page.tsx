@@ -138,7 +138,7 @@ export default async function orderProduct({ params }: { params: { slug: string 
                     </div>
 
                     <div className={Styles.opinion}>
-                        <h2>How's your item?</h2>
+                        <h2>How&apos;s your item?</h2>
                         <p>Write a product review</p>
                         <p>Leave seller feadback</p>
                     </div>
