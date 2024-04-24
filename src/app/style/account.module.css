@@ -119,3 +119,13 @@
     /* background-color: blueviolet; */
     border: 1px solid red;
 }
+
+
+.btn{
+    cursor: pointer;
+    padding: 2px 4px 2px 4px;
+    border:1px solid #000;
+    background-color: transparent;
+    color: #000;
+    margin-top: 15px;
+}

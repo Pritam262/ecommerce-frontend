@@ -105,6 +105,7 @@ export default function CheckoutPage({
           },
         };
 
+        // @ts-ignore
 
         const razorpayInstance = new Razorpay(options);
         razorpayInstance.open();

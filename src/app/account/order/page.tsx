@@ -4,6 +4,7 @@ import { useAppContext } from "@/app/context/appContext"
 import { useEffect, useState } from "react";
 import Styles from '@/app/style/orderpage.module.css';
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 interface productItem {
@@ -32,7 +33,7 @@ interface OrderData {
 }
 
 
-export default function orderPage() {
+export default function OrderPage() {
 
     const router = useRouter();
 
@@ -71,7 +72,7 @@ export default function orderPage() {
                         <div key={item?.id} className={Styles.card} onClick={()=> router.push(`/account/order/${item?.id}`)}>
 
                            
-                                <img src={item?.product?.imageUrl} alt="" width={150} height={150} />
+                                <Image src={item?.product?.imageUrl} alt="" width={150} height={150} />
                                 <div>
                                     <p>{item?.product?.title}</p>
                                     {item?.isCancel ? <p style={{color:"red"}}>Order Canceled</p> : " "}

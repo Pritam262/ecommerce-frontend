@@ -63,7 +63,7 @@ export default async function productPage({ params, searchParams }: { params: { 
                                 )
                         })}
                         </ul>
-                        <p className={Styles.price}>{data?.price}</p>
+                        <p className={Styles.price}>₹ {data?.price}</p>
 
                         <div className={Styles.colorOption}>
 

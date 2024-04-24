@@ -1,6 +1,5 @@
 'use client'
 import { createContext, ReactNode, useContext, useState, useEffect } from "react";
-import { cookies } from "next/headers";
 import axios from "axios";
 interface AddressItem {
     id: string;

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+
 import './globals.css'
 import AppState from './context/appState';
-const inter = Inter({ subsets: ['latin'] })
+
 
 export const metadata: Metadata = {
   manifest:"/manifest.json",
@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body >
         <AppState>
         {children}
         </AppState>
