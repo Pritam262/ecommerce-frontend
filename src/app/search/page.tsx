@@ -60,7 +60,7 @@ export default async function searchProducts({params, searchParams }: {params:{s
 
                                 <div className={Styles.proDetails}>
                                     <p className={Styles.title}>{item?.title}</p>
-                                    <span><p>Star</p> 1,314</span>
+                                    <span><p>Star 4.2</p> 1,314</span>
                                     <span className={Styles.price}><span>₹</span> <span className={Styles.priceTag}><p >{item?.price}</p> <span className={Styles.offPrice}>M.R.P: ₹ 89,999 (28% off)</span></span></span>
                                     <span className={Styles.offerTag}>Flat INR 10000 on HDFC BankCard</span>
                                     <p>prime</p>

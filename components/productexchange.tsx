@@ -20,7 +20,7 @@ export default function ExchangeComponent(props:any) {
 
                 <span><input type="radio" className={Styles.radioBtn} name="type" value="withoutexchange" defaultChecked onChange={(e: React.ChangeEvent<HTMLInputElement>) => setType(e.target.value)} /> Without Exchange</span>
 
-                <p>{props?.price}</p>
+                <p>₹ {props?.price}</p>
                 {(type === "withoutexchange") ? <div>
                     <p>Without Exchnage</p>
                     <div className={Styles.option}>
