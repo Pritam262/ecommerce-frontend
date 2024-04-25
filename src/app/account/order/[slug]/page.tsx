@@ -10,6 +10,7 @@ interface ProductData {
     id: string;
     title: string;
     imageUrl: string;
+    qty:number,
 }
 interface OrderItem {
     id: string;
@@ -23,6 +24,7 @@ interface OrderItem {
     isCancel: Boolean;
     qty: number;
     price: number;
+    totalPrice:number,
     address: string;
     phone: string;
     date: string;
@@ -125,6 +127,9 @@ export default async function orderProduct({ params }: { params: { slug: string 
                         </div>
 
                         <div><p>Track package</p></div>
+                        <div><p>Order price : {data?.order?.price}</p></div>
+                        <div><p>Order Qty : {data?.order?.qty}</p></div>
+                        <div><p>Total Price : {data?.order?.totalPrice}</p></div>
                     </div>
 
                     <div className={Styles.orderInfo}>
@@ -132,7 +137,7 @@ export default async function orderProduct({ params }: { params: { slug: string 
                         <p>View order details</p>
 
                         <hr />
-                        <p>Return window will be closed on 30 March 2024</p>
+                        <p>Return window will be closed on 30 April 2024</p>
                         {/* <p>Order on 1 March 2024</p> */}
                         <p>Order on {getDateFormate(data?.order?.date)}</p>
                     </div>
