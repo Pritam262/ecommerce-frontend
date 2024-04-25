@@ -40,24 +40,6 @@ export const CartButton: React.FC<CartBtn> = ({ id, title }) => {
         }
     }
 
-    // const getLocalStorageData = () => {
-
-    //     try {
-
-    //         const getLocalStorageData = localStorage.getItem('cart-product');
-
-    //         if (getLocalStorageData != null) {
-
-    //             // console.log("Get localStorage data", JSON.parse(getLocalStorageData));
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-
-    // }
-
-    // getLocalStorageData();
-
     return (
         <div className={Styles.btn} onClick={() => cartProduct(id, 1)}>Cart</div>
     )
@@ -68,12 +50,12 @@ interface BuyBtnProps {
     type: string,
 }
 export const BuyButton: React.FC<BuyBtnProps> = ({ id, type }) => {
-
+    const { hostUrl } = useAppContext();
     const router = useRouter();
 
     // <div style={{ margin: "15px 0 0 15px", cursor: "pointer", border: " 1px solid #000", width: "max-content", padding: " .5rem 1.5rem" }} onClick={ ()=>router.push(`/buy?id=${id.id}`) }>Buy</div>
     return (
-        <div className={Styles.btn} onClick={() => console.log(`Buy product ${id}, type ${type}`)}>Buy</div>
+        <div className={Styles.btn} onClick={() => router.push(`/account/checkout?proid=${id}&type=${type}`)}>Buy</div>
     )
 
 }
