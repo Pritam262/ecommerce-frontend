@@ -9,7 +9,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { IoPersonOutline } from "react-icons/io5";
 import Link from 'next/link';
 import { useAppContext } from '@/app/context/appContext';
-
+import { useRouter } from 'next/navigation';
 type suggestionData = {
     id: string;
     key: String;
@@ -20,6 +20,8 @@ type suggestions = {
     suggestions: Array<suggestionData>;
 }
 export default function Navbar() {
+
+    const router = useRouter();
     const [screenWidth, setScreenWidth] = useState<number>(1200);
     const { hostUrl, isLogin, profileData, cartData } = useAppContext();
     interface IP {
@@ -99,7 +101,7 @@ export default function Navbar() {
                     value={prefix.length <= 1 ? '' : prefix} onChange={handleChange} /> */}
 
                     <input type="text" name="search" id="" placeholder='Search something' onChange={handleChange} />
-                    <FaSearch className={gretherStyles.searchIcon} onClick={handleSuggestion} />
+                    <FaSearch className={gretherStyles.searchIcon} onClick={()=>handleSuggestion} />
                 </div>
 
                 {/* Right side */}
@@ -161,7 +163,7 @@ export default function Navbar() {
              
 
                     <div className={Styles.rightNavbar} >
-                       { isLogin ? <IoPersonOutline />: <Link href="/login">Sign In &gt; </Link>}
+                       { isLogin ? <IoPersonOutline onClick={()=>router.push('/account')}/>: <Link href="/login">Sign In &gt; </Link>}
                         {isLogin ? <Link href="/account/cart">
                             <div className={Styles.cartItem}>
                                 <FiShoppingCart className={Styles.cartIcon} />
@@ -185,7 +187,7 @@ export default function Navbar() {
                     <input type="text" name="search" id="" placeholder='Search something' onChange={handleChange} className={Styles.searchInput} />
                     <div className={Styles.searchIconDiv}>
 
-                        <FaSearch className={Styles.searchIcon} onClick={handleSuggestion} />
+                        <FaSearch className={Styles.searchIcon} onClick={()=>handleSuggestion} />
                     </div>
                 </div>
 
